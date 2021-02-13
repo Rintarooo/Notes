@@ -1,0 +1,65 @@
+Docker コマンド
+
+# $ sudo apt  install docker.io
+# install on docker ubuntu version
+
+$ docker version
+check installed decker version
+
+$ docker info
+
+$ docker run hello-world
+ローカルにhello-worldのimage無ければ
+DockerHubから自動的にimageをpull
+
+$ docker images
+=$ docker image ls
+ローカルにあるimageを表示
+
+$ docker ps
+ps = process status
+$ docker ps -alq
+-a = all
+-l = latest
+-q, [コンテナID]のみ表示
+
+$ docker rm [コンテナID]
+$ docker rmi [イメージID]
+
+
+$ docker image pull [image名:タグ]
+$ docker image pull ubuntu:latest
+Docker host（ローカル）にimageをpull
+
+
+$ docker run -it --rm alpine /bin/sh
+$ docker run -it --rm ubuntu:latest /bin/bash
+→root@[コンテナID]:/
+
+$ runはコンテナの立ち上げ
+[control]+dで$ exit
+-it
+-i = standard input
+-t = psuedo terminal
+コンテナの中で対話的(interactive)に作業をしたい
+
+--rm
+Automatically remove the container when it exits
+
+-v ${PWD} : container hoge
+mount 
+ホスト側のファイルをコンテナ内で使いたいときに使う
+${PWD}はホスト側のカレントディレクトリ 
+
+ -w
+ Working directory inside the container
+これ使わないとコンテナのルートディレクトリから始まる
+
+--name
+コンテナの名前つける
+
+
+alpine/git:latest
+
+$ docker build -t 名前 .
+-t/--tag

@@ -58,8 +58,10 @@ ${PWD}はホスト側のカレントディレクトリ
 --name
 コンテナの名前つける
 
+--gpus=all
+使えるgpu全部使う
 
 alpine/git:latest
 
-$ docker build -t 名前 .
--t/--tag
+$ docker build -t イメージ名:タグ名 .
+-t/--tag 

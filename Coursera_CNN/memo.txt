@@ -1,0 +1,32 @@
+Coursera CNN course
+
+・Week1
+Edge detection
+ConvNets
+sparsity of connections
+
+・Week2
+ResNet
+skipping connection
+1*1 convolution layer 
+
+・Week3
+YOLO algorithm 
+IOU(Intersection over Union)
+Non-max suppression (まず最も確率の高い部分のAnchor box(もしくはboundary box)(物体を囲むrectangleのこと)
+を取り出し，その後それに重なった部分が0.5以上のを取り除く(IOUはどのくらい重なったかを調べる指標のこと)
+grid(19*19)でそれぞれに5このAnchor boxがあり，各Anchor box毎に物体検出確率(Pc=1or0)とmid point, coordinator of Anchor boxなどの座標，に加えてクラスの分類数の次元が存在する
+
+・Week4
+one shot learning 顔の写真1枚だけで認識・分類しなければいけない問題のこと(いっぱい顔の写真がないこと)
+Neural style transferニューラルスタイル変換, 2枚の画像の合成
+face verification 
+Data Augmentation 画像データ水増し
+
+Sequence models
+・Week1
+LSTM
+・Week2
+Word2Vec
+Embedding
+Emojifyの課題の最後のKerasがむずい，Functional APIでの実装

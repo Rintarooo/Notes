@@ -1,0 +1,31 @@
+installation TensorFlow
+
+mac, cpu
+bazel build --config=v2 --local_cpu_resources=2 --verbose_failures -c opt --copt=-mavx --copt=-mavx2 --copt=-mfma --copt=-msse4.2 //tensorflow/tools/pip_package:build_pip_package
+https://www.tensorflow.org/install/source
+https://twismik0.hatenablog.com/entry/2018/12/02/213040
+https://technofob.com/2019/06/14/how-to-compile-tensorflow-2-0-with-avx2-fma-instructions-on-mac/
+
+tf.reshape(target tensor, tf.shape(ideal tensor))
+
+ubuntu
+ubuntu CPU info:
+https://ark.intel.com/content/www/us/en/ark/products/47923/intel-xeon-processor-e5640-12m-cache-2-66-ghz-5-86-gt-s-intel-qpi.html
+AVX2, FMA, SSE4.1, SSE4.2: 
+https://medium.com/@sometimescasey/building-tensorflow-from-source-for-sse-avx-fma-instructions-worth-the-effort-fbda4e30eec3
+
+https://www.tensorflow.org/install/source?hl=ja#gpu_support_2
+https://docs.bazel.build/versions/0.26.0/install-ubuntu.html
+
+git clone URL
+cd tensorflow
+./configure
+https://mc.ai/build-tensorflow-2-0-from-source-with-gpu-and-tensorrt-supports-on-ubuntu-18-04/
+質問でてくる
+CUDA support [y/N] —> y
+
+bazel build --config=v2 --local_cpu_resources=4 --verbose_failures -c opt --copt=-msse4.1 --copt=-msse4.2  --config=cuda //tensorflow/tools/pip_package:build_pip_package
+
+--config=v2: tenosrflow2のバージョン
+--local_cpu_resources=2: CPUのthread数， cat /proc/cpuinfoでCPUの情報をチェック
+--config=cuda: gpu使ってビルドする

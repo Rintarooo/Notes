@@ -1,9 +1,14 @@
 FROM nvidia/cuda:10.1-cudnn7-devel-ubuntu18.04
+# FROM -> based docker image
+# https://hub.docker.com/r/nvidia/cuda/tags?page=1&ordering=last_updated&name=ubuntu18
+
 ARG PYTHON_VERSION=3.6.10
 ARG CUDA_TOOLKIT_VERSION=10.1
 ARG PYTORCH_VERSION=1.6.0
 
 # Install some basic utilities
+# RUN -> run when build image
+# "--no-install-recommends" option will make install faster
 RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     ca-certificates \
@@ -37,7 +42,11 @@ RUN curl -sLo ~/miniconda.sh https://repo.continuum.io/miniconda/Miniconda3-late
  && conda install -y python==$PYTHON_VERSION numpy scipy \
  && conda clean -ya
 
- RUN conda install -y -c pytorch==$PYTORCH_VERSION \
-    torchvision==0.7.0 \
+ RUN conda install -y -c pytorch \
     cudatoolkit=$CUDA_TOOLKIT_VERSION \
-    -c pytorch && conda clean -ya
+    "pytorch=1.6.0=py3.6_cuda10.1.243_cudnn7.6.3_0" \
+ && conda clean -ya
+ # https://anaconda.org/pytorch/pytorch/files?version=1.6.0
+
+ # COPY -> copy directory
+ # CMD -> run when container run

@@ -19,7 +19,7 @@ $ docker images
 $ docker ps
 ps = process status
 $ docker ps -alq
--a = all
+-a = all（停止しているコンテナ含む全て）
 -l = latest
 -q, [コンテナID]のみ表示
 
@@ -37,7 +37,9 @@ $ docker run -it --rm ubuntu:latest /bin/bash
 →root@[コンテナID]:/
 
 $ runはコンテナの立ち上げ
-[control]+dで$ exit
+$ exit または[control]+d
+exit from the container
+
 -it
 -i = standard input
 -t = psuedo terminal
@@ -65,3 +67,7 @@ alpine/git:latest
 
 $ docker build -t イメージ名:タグ名 .
 -t/--tag 
+
+$ docker stop [コンテナID]
+立ち上げているコンテナを停止
+$ docker psで[コンテナID]確認

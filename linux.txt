@@ -1,0 +1,179 @@
+・Linux command
+
+https://babarunt.com/%E5%80%8B%E4%BA%BA%E7%9A%84%E3%81%ABlinux%E3%81%A7%E3%82%88%E3%81%8F%E4%BD%BF%E3%81%86%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%83%AA%E3%82%B9%E3%83%88/
+
+$sudo reboot 再起動
+
+[tab] compliment 補完する
+
+[command]+[shift] + [+] enlarge screen
+
+[command]+[-] make screen small
+
+[Ctrl]+[alt]+[t] open terminal
+
+[Ctrl] + [l]  clear
+
+[Ctrl]+[c] cancel
+
+[Ctrl]+[u] clear input
+
+[Ctrl]+[d] close terminal
+$exit close terminal
+
+[↑] use history
+
+[~]=$HOME
+[/]=root directory
+[.]=current directory
+[..]=parent directory
+$pwd print working directory
+$cd = change current directory
+$cd .(/) change into current directory (which means doesn’t change directory)
+$cd ..(/) change directory into parent one
+$cd ~, (cd) change directory into home directory
+
+
+$ls=list
+$ls -l show list in detail 
+$ls -a 
+.で始まる隠しファイルもすべて（All）表示
+$ls -F make sure the contents are directory or file
+$ls -R1 
+-Rは再帰的に表示(深い階層も表示), -1は縦に表示
+$ls -trlp
+$ls -lt show files you’ve used recently
+-p is similar to -F
+$ls | grep -i 「ファイル名」
+$ls のオプションまとめ
+https://eng-entrance.com/linux_command_ls
+
+$chmod
+http://motw.mods.jp/UNIX/chmod.html
+-rwxr-xr-x — owner - group - other users
+x→permission, w→write, r→read, d→directory
++(give) -(remove) a(all users)
+$ chmod 777 [何とか].sh
+$ chmod +x [何とか].sh
+
+$which [コマンド名]  
+[コマンド名]のフルパスを表示
+$ which python3
+python3のコマンドのフルパスを表示
+
+$cal—calendar
+$date—date
+
+$mkdir ***
+make directory
+$mkdir -p ***/***
+2階以上の層を作れる
+$rmdir remove directory
+rm -r ファイル名(ディレクトリ名)　
+隠しファイルごとすべて中身も再帰的に削除してディレクトリも削除
+-rf 
+fをつけると強制的に削除(ほんとに消してもよいかという質問をしないという意味)
+
+$mv abc xyz 
+move and rename directory and file, not only this way but also change the directory location, change the file name from ‘abc’ to ‘xyz’
+
+$cp abc xyz copy abc to xyz, make abc and xyzzy
+cp -r でディレクトリごとコピー
+
+$cat [ファイル名] you can look at the contents of the file
+$rm *.py 
+.pyのファイルを全て削除
+
+$echo OOO 
+return OOO
+$echo “OOO” > file名.txt
+make a new text file written “OOO”
+
+$echo “OOO” >> file名.txt 
+文字列“OOO”をfileの中身に追加
+$sudo
+super user do something
+$sudo apt-get install OOO 
+install OOO
+
+$sudo apt-get update 
+update repo
+
+$sudo apt-get upgrade 
+install updated one
+
+
+man [コマンド名] 
+コマンドの詳細表示display the on-line manual pages 
+q→quit
+
+$ 一般ユーザー 
+#ルート
+
+$set
+環境変数を表示
+$printenv | less 
+環境変数に代入されてるものも表示
+$printenv | head 
+環境変数の上10行表示
+$printenv | tail
+環境変数の下10行表示
+
+$export  PATH=[なんとか]
+環境変数であるPATHに[なんとか]を追加
+$echo $PATH
+$source [ファイル名]
+
+$vim ~/.bashrc
+vimで~/.bashrcを編集
+
+$ sudo dpkg -i [なんとか].deb
+[なんとか]debファイルを-i=install
+
+$ifconfig
+ping www.google.com
+$jupyter notebook 
+open jupyter notebook
+
+$geany 
+launch geany
+$subl 
+launch sublime
+$subl hoge.txt
+hoge.txtをsublimeで開く
+
+$python3 -V 
+show python version
+$python 
+python 起動
+[shift]+[Enter] 改行
+$exit() or [Ctrl]+D quit
+$python [ファイル名.py] 
+実行
+
+例えば以下は、ls コマンドでカレントディレクトリのファイル一覧を取得し、「txt」が含まれる行だけ表示する例。
+$ls | grep txt
+小文字・大文字を区別しないときは-iオプションつける
+$ls | grep -i txt
+
+findはディレクトリの階下までさがす　find . -iname “*.py”
+カレントディレクトリ以下で”OOO”を文字列に含むものを探す
+$find . -iname “*OOO*”
+
+$ df -h
+display free disk space(全体の)
+全体のストレージ容量を表示
+-hオプション means human can see
+
+$ du -h
+disk usage, sum them up 
+再帰的にカレントディレクトリ以下のファイル毎の容量を表示
+
+$ du -hd[数字]
+$ du -hd1
+カレントディレクトリの１段下のディレクトリ毎の容量を表示
+
+$ du -h ./*
+再帰的にカレントディレクトリ以下のファイル・ディレクトリ 毎の容量を表示
+
+

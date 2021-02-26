@@ -1,0 +1,171 @@
+・conda
+・virtualenv 
+
+conda
+<インストール-miniconda->
+
+公式サイトから適切なOSからダウンロード
+
+$cd Downloads
+
+$bash ***.sh 
+
+ 
+
+<使い方-conda環境->
+
+・作成
+
+(bash)$conda create -n 「仮想環境の名前」python=「ヴァージョンの数字」
+
+ 
+
+・仮想環境一覧(*が現在いる環境を指す)
+
+(bash)$conda info -e
+
+ 
+
+・入る
+
+(bash)$conda activate  「仮想環境の名前」
+
+ 
+
+・インストールしたパッケージ一覧
+
+(仮想環境の名前)$conda list
+
+ 
+
+・インストールしたパッケージ一覧(grepで文字列tensorを検索，-iは大文字・小文字)
+
+(仮想環境の名前)$conda list | grep -i tensor
+
+ 
+
+・出る
+
+(仮想環境の名前)$conda deactivate
+
+ 
+
+・削除
+
+(bash)$conda remove -n 「仮想環境の名前」--all
+
+ 
+
+ちなみに$anaconda-navigatorでenvironmentのとこでも仮想環境の確認ができる
+
+ 
+
+ 
+
+ 
+
+ 2. virtualenv 
+
+<インストール-virtualenv->
+
+$virtualenv --version
+
+でバージョン(と入ってるかどうかを)確認．
+
+入ってなかったら以下のように入れる
+
+ 
+
+conda環境で(base)$conda deactivateで仮想環境を一旦抜ける．
+
+conda環境でインストールしてしまうと
+
+-> installs virtualenvwrapper in the "anaconda3/"
+
+$pip3 install virtualenv
+
+ 
+
+$which virtualenvwrapper.sh
+
+でvirtualenvwrapper.shのパスを確認
+
+ 
+
+(推奨)
+
+$sudo pip3 install virtualenvwrapper
+
+-> installs virtualenvwrapper in the "/usr/local/bin"
+
+ 
+
+(非推奨)
+
+$pip3 install virtualenvwrapper
+
+-> installs virtualenvwrapper in the "~/.local/bin"
+
+details is out here(https://medium.com/@gitudaniel/installing-virtualenvwrapper-for-python3-ad3dfea7c717)
+
+  
+
+$vim ~/.bashrc
+
+で，.bashrcの最後に以下の2行を書き込む
+
+export WORKON_HOME=~/.virtualenvs
+
+export VIRTUALENVWRAPPER_PYTHON=
+
+[$which python3で確認したパス]
+
+export VIRTUALENVWRAPPER_VIRTUALENV=[$which virtualenvで確認したパス]
+
+source [$which virtualenvwrapper.shで確認したパス]
+
+ 
+
+をvimで書き込む([i](insert modeで書き込み)→[esc]→:w→:q)
+
+ 
+
+<使い方-virtualenv->
+
+・作成
+
+$mkvirtualenv --python=/usr/bin/python3 「仮想環境の名前」
+
+(~/.virtualenvs/のディレクトリの中に仮想環境のディレクトリが作成される)
+
+ 
+
+・仮想環境一覧
+
+$workon
+
+ 
+
+・入る
+
+$workon  「仮想環境の名前」
+
+ 
+
+・インストールしたパッケージ一覧
+
+(仮想環境の名前)$lssitepackages
+
+(仮想環境の名前)$lssitepackages | grep -i tensorflow
+
+ 
+
+・出る
+
+(仮想環境の名前)$deactivate
+
+ 
+
+・削除
+
+$rmvirtualenv 「仮想環境の名前」

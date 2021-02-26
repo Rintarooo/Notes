@@ -1,0 +1,27 @@
+・C++
+$gcc --version
+$g++ --version
+$clang --version
+clangはgccのmacOSバージョン
+
+$g++ sample.cpp
+generate executive file “a.out”, this process is called build(= compile + link)
+
+$g++ sample.cpp -o sample.exe
+generate executive file “sample.exe”
+-oオプションをつけないと，デフォルトの“a.out”が生成される
+
+$ g++ -std=c++11 main.cpp -o main.exe
+execute by running this command
+$./sample.exe 
+
+$lldb main.exe 
+$r
+this command is for running debugger, lldb is for only MacOS
+lldb = mac標準のclangのデバッガ。
+
+$lldb build/main.exe
+(lldb) target create "build/main.exe"
+Current executable set to 'build/main.exe' (x86_64).
+$r(= run) probs/solomon_25/C101.txt
+$bt 

@@ -1,0 +1,35 @@
+Pytorch model weights parameters
+
+How to print model’s parameters with its name and required grad value, pytorch forlum
+https://stackoverflow.com/questions/52465723/what-is-the-difference-between-parameters-and-children
+
+model = torch.load(pre-trained_path)
+
+model.state_dict()
+a generator that returns dictionary{ layer name : tensors containing your model parameters}
+
+model.modules()
+recursively layer name , go deeper in a tree than model.children() 
+https://discuss.pytorch.org/t/module-children-vs-module-modules/4551
+model.named_modules()
+ 
+model.parameters()
+a generator that returns tensors containing your model parameters.
+model.named_parameters()
+
+model.children()
+a generator that returns layers of the model(type is string) from which you can extract your parameter tensors using <layername>.weight or <layername>.bias
+#PytorchのNetworkのパラメータの閲覧と書き換え, qiita, 6.3項参照 
+model.named_children()
+
+
+for k in model.state_dict():
+	print(k)# layer name(key)
+
+for k, v in model.state_dict().items():
+	print(k, v)# layer name(key), tensor(value)
+
+for param in model.parameters():
+	print(param)# param = data(tensor) + requires_grad(boolean)
+	print(param.data)
+	print(param.requires_grad)# boolean, True or False

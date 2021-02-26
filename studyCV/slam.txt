@@ -1,0 +1,82 @@
+SLAM
+
+・frontend ベイズフィルタ系 or スキャンマッチング(ICP(Iterative Closet Point, 距離近い点を対応づけ)，NDT) 
+・backend グラフベース
+連立方程式立てて非線形最小二乗法，
+２種類
+・ポーズ調整
+・バンドル調整 (BA, Bundle Adjustment)
+
+2種類
+・オンラインSLAM問題
+・完全SLAM問題
+確率ロボティクスp.279
+
+ベイズフィルタ(推定(制御と1時刻前の姿勢から)→更新(観測値から)(ガウス分布の積))
+カルマンフィルタ2種類
+Extended Kalman Filter(EKF): テイラー展開で非線形(直線ではない曲線，１次式で表せない，行列の掛け算で表現できない)を線形化(線形(直線，１次式)に近似)
+アンセンテッド，Unscented Kalman Filter (UFK)
+パーティクルフィルタ < ガウシアンフィルタ (むずい)
+MCL: Monte Carlo Localization, パーティクルフィルタ
+
+x: ロボットの姿勢(位置), pose(state)
+u: 制御, control(action) もしくはa: actionとして書かれることもある
+d = (x^t-1, x^t)^T: ロボットの相対位置, ポーズ調整に使われる
+z: センサの計測値, obsearvation
+m: 地図, mapping
+
+共分散行列Σ(標準偏差σの多次元バージョン)の逆行列Σ^-1 = 情報行列Ω
+
+p(x^t | u^t, x^t-1): 運動(移動)モデル motion model，確率ロボティクス5章，ロボットがどこに移動するかの確率，前の時刻の位置x^t-1と制御量(オドメトリの積分)u^tがわかれば，x^tが推定できる
+
+
+p(z^t | x^t) = 尤度L(x^t | z^t): 計測(観測)モデル obsearvation model，確率ロボティクス6章，尤度→センサの値を踏まえて、座標が○○であることはどれくらいもっともらしいか，x^t であると仮定した場合にデータz^tが得られる確率 ，p(z^t | x^t)が高いとx^tである確率高い，確率ロボティクスPython location 34% 3027/9196
+
+占有格子地図(occupancy grid map)
+
+静止しているランドマーク(特徴点)の複数画像間で対応付け
+Harris, SIFT(Scale Invariant feature transform)計算量多く時間かかる, SURF，ORB: 局所記述子, 画像の中の特徴量ベクトル
+
+Visual SLAM: 
+1. Direct method(特徴点ではなく画素値を直接用いる)
+密(dense)なマップ作れる，特徴点の抽出・特徴点の画像間の対応付けをしないので，計算量小さくなる
+2. Indirect method(カメラtracking，特徴点ベース)疎(sparse)→ORB-SLAM
+VITAMIN-E: Indirect method(特徴点ベース)だが，大量の特徴点を抽出して疎ではなく密．
+Visual Odometry(VO)
+
+RANSAC: 外れ値(outlier)を外す
+バンドル調整: 世界座標に登録されている点を，画像座標に投影して，距離(再投影誤差)を小さくするようカメラ位置を動かす
+ステレオマッチング: 2枚の画像の特徴点をマッチングして視差を推定する手法
+6DOF: 6 degrees of freedom(6自由度)(x,y,z,x軸まわり回転,y軸まわり回転,z軸まわり回転)
+
+SfM(= Visual SLAM): 画像間の特徴点の抽出&対応付け(マッチング)を行うことで，カメラの姿勢＋特徴点の3次元座標を推定する手法
+
+RGBDカメラ, LRF(Laser Range Finder), Lidar
+
+３次元再編成，キャリブレーション
+DLT法(Direct Linear Transformation)＝３次元世界座標が既に分かっている点(制御点(Control Point))を複数視点のカメラで撮影することで，３次元世界座標と正規化２次元画像座標間の対応から，透視投影行列Pより方程式を得て，３次元再編成に必要な透視投影行列Pのパラメーターを求める手法．(https://www.nicovideo.jp/watch/sm14738225)（https://mem-archive.com/2019/03/16/post-1646/）
+
+・距離
+ユークリッド距離，ふつうのやつ
+マハラノビス距離，共分散行列をサンドウィッチ，分散を考慮
+ハミング距離
+
+・近年
+CNN-SLAM
+DeepTAM
+6自由度, xyz(xyz) 自己位置推定
+Variational end-to-end, Pose net
+DeepVO, UnDeepVO
+D2VO Monocular SLAM(IROS2020)
+DS-SLAM(semantic segmentation)
+
+・3次元データ表示方法
+https://blog.albert2005.co.jp/2020/07/22/nerural-3d-representation/
+深度→[x,y,depth]
+ボクセル→3次元配列
+点群→3次元座標[x,y,z]の集まり
+メッシュ（テクスチャ）→?
+
+ROS indigo（indigoではなくkineticが最新のディストリビューション）（catkin（ビルド用，CMakeのROS拡張版））, rqt（ノード管理を表示），RViz（可視化），Gazebo（シミュレータ），tf（座標変換）
+Bundler（SfMのOSS）
+

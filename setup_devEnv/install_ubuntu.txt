@@ -1,0 +1,45 @@
+・PC Installation Procedure
+
+・how to find out what type of GPU you have
+Windows: 左下のメニューで「dxdiag」を検索して，実行
+https://pc-kaizen.com/windows7-confirm-the-graphics-card
+Linux: $sudo lshw -c video
+
+・Rufus is an open source software that change a USB into the ’live USB’, which allows the computer recognizes a USB as an OS installer. 
+https://pc-freedom.net/software/rufus%E3%81%A7linux%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%83%A1%E3%83%87%E3%82%A3%E3%82%A2%E3%82%92%E4%BD%9C%E3%82%8B%E3%80%82/
+手順→https://ja.unflf.com/dualboot-ubuntu-windows/
+
+<Linux(ubuntu).18.04 LTS>
+１．ISOファイルをubuntuの公式サイトからダウンロードしてUSBにコピーする
+２．Ubuntu用にパーティションを作成，Cドライブの部分を右クリックしてボリュームの縮小
+３．そのUSBをコンピュータにOSインストーラー(Live USBという)として認識させるため，Rufus(もしくはUNetbootin)というのを検索して公式サイトからダウンロードして実行する
+４．PCを再起動させて，PCを起動したときのロゴ画面で[del]キー(このキーはPCのメーカー，種類によって違う)を押し，BiosでWindowsではなくUSBを優先起動[priorityらへん]させるよう順序をいじる
+５．USBを指して再び起動してtry ubuntu without installを選択
+６．地域は現地、keyboard layoutはJapaneseを選択(USキーボードではなくJISキーボードを使っている場合)
+７．$sudo apt-get update, $sudo apt-get upgrade
+
+<MOZC>
+右上選択してregion&languageをクリック
+真ん中のInput Sourcesの[+]のとこをクリックして，Japaneseをクリック，Mozcをクリック
+Mozcがない場合はインストール→https://www.karelie.net/install-ibus-mozc-1804/
+
+<proxy GUI>
+https://usado.jp/spdsk/2018/05/14/post-3699/
+
+<proxy FireFox>
+1. click 3 lines on the top right
+2. choose “preference”
+3. General -> Network Settings
+4. -> Manual proxy configuration
+5. -> fill out in the blank of HTTP proxy and port number
+6. Use this proxy for all protocol  
+https://usado.jp/spdsk/2018/05/14/post-3699/
+
+<Geany>
+https://freefromjp.wordpress.com/2018/03/14/geany%E3%82%92ubuntu%E3%81%AB%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB/
+
+Set Build Commands
+で$which pythonで出るパスを，Execute CommandsのCommandのcolumnに「パス “%f”」の形で指定
+
+VGA(Video Graphic Array), GPU(Graphics Processing Unit) 
+→VGA = GPU + motherboard 

@@ -1,0 +1,136 @@
+・one example for downloading
+Ubuntu 18.04 LTS
+tensorflow_gpu-1.14.0
+Python 3.7
+CUDA 10.0
+cuDNN 7.4
+
+<TensorFlow>
+TensorFlowのversionと，それに対応するCUDA, cuDNN, Pythonのダウンロードするversionをここで確認する
+https://www.tensorflow.org/install/source
+
+<Nvidia driver>
+まず，nouveauとかいうデフォルトのドライバを無効にする
+$cd /etc/modprobe.d/
+$ls
+$vim blacklist-nvidia-nouveau.conf
+に以下を書き込む
+blacklist nouveau
+options nouveau modeset=0                                           
+
+$sudo update-initramfs -u
+で読み込む
+$lsmod | grep -i nouveau
+で何も出てこないこと(nouveauが無効になったこと)を確認する 
+$sudo reboot
+再起動すると，画面の解像度が落ちる
+
+ここからは2種類の方法(おすすめは前者より後者)
+・1. リポジトリからダウンロード(非推奨)
+nvidia driver install
+ppa(非公式のマーケット)とかいうものをリポジトリに追加
+$sudo add-apt-repository ppa:graphics-drivers/ppa
+$sudo apt-get update
+$sudo apt-get upgrade
+https://ymgsapo.com/2019/02/26/keras-gpu-deep-learning/
+$ubuntu-drivers devices
+でおすすめのドライバのバージョンを表示(応答に少し時間かかる)
+
+・2. 公式サイトから自分の欲しいversionのドライバーをダウンロード(推奨)
+公式サイト→https://www.nvidia.com/download/index.aspx
+$cd ~/Downloads
+でダウンロードしたとこに移動
+$ls
+$chmod +x [なんとか].run
+chmodでダウンロードした「なんとか.run」に+xで権限付与
+([なんとか]の部分は，$lsで見たダウンロードされたものの名前をコピペする)
+$sudo ./[なんとか].run
+→https://youtu.be/0JhBPB6_Vr4 (この動画の2:38秒に載ってるコマンド)
+一応この動画もhttps://www.youtube.com/watch?v=0JhBPB6_Vr4&t=102s
+
+もしつまったら，
+$sudo nvidia-uninstall
+でクリア
+gcc(コンパイラ)が必要だと表示されたら
+→https://linuxize.com/post/how-to-install-gcc-compiler-on-ubuntu-18-04/  
+$sudo apt install build-essential
+でgccをインストールする
+
+$sudo ./[なんとか].run
+でインストール
+$reboot
+再起動後，
+$nvidia-smi
+や
+$nvidia-settings
+でドライバーがインストールされてるかチェック
+
+参考サイト
+https://qiita.com/ohta6/items/684b9ecd4d67a52e5a7f
+https://ymgsapo.com/2019/02/26/keras-gpu-deep-learning/
+過去のドライバを削除する場合
+https://qiita.com/bohemian916/items/7637b9b0b3494f447c03
+
+
+<nvidia CUDA toolkit>
+公式サイトから欲しいバージョンのdebファイルをダウンロード
+公式サイト→CUDA Toolkit Archive: https://developer.nvidia.com/cuda-toolkit-archive 
+公式サイトでは，Linux, x86_64, Ubuntu, 18.04, deb(network)(もしくはdeb(run))を選択すると短いinstructionが出てくる
+deb(network)を選んで，インストール上手くいかないときは、deb(local) (1.5GBと重い)を選ぶ
+下の方のInstallation Guide for Linux (3.6 Ubuntuの項)も一応見る
+
+$cd ~/Downloads
+でダウンロードしたとこに移動
+$ls
+$sudo dpkg -i cuda-repo-ubuntu なんとか _amd64.deb
+dpkgはdebファイルを扱うもの，-iのオプションはinstallの意味
+$sudo apt-key adv なんとか(ダウンロード後のガイドに従う)
+$sudo apt-get update
+$sudo apt-get install cuda-10-0(version指定をしておく)
+
+ダウンロード直後，PATHの設定をする
+$vim ~/.bashrc
+vimとかで　~/.bashrc の設定ファイルをいじる　
+~/.bashrcにexport=で以下のように環境変数PATHを追加必要
+
+(例：NVIDIA CUDA Toolkit 10.0の場合)
+<~/.bashrcのファイルの中>
+export PATH=/usr/local/cuda-10.0/bin${PATH:+:${PATH}}
+${PATH:+:${PATH}}    if $PATH is defined, add /usr/local/cuda-10.0/bin:$PATH 
+—> https://unix.stackexchange.com/questions/267506/what-does-pathpath-mean/267548
+export LD_LIBRARY_PATH=/usr/local/cuda-10.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+export CUDA_HOME=/usr/local/cuda
+　
+source ~/.bashrc
+で読み込み
+
+$nvcc -V
+でインストールされたかチェック
+
+
+参考サイト
+http://kijibato.sblo.jp/article/185419962.html
+
+<cuDNN>
+公式サイトでアカウント作成, メアドでverifyの必要あり
+公式サイトから欲しいversionの場所を探す
+「cuDNN Library for Linux」をクリックして.tgzファイルをダウンロード
+$cd ~/Downloads
+でダウンロードしたとこに移動
+$tar -zxvf xxxx.tar.gzで解凍,ファイル展開される(5個ぐらい出てくる)
+https://reiven-c-t.github.io/Programming/ubuntu-18.04-cuda-tensorflow.html
+cp でこの5個ぐらいのを/usr/local/cuda/includeや/usr/local/cuda/lib64に持ってくる 
+権限付与 $chmod
+「cuDNN Runtime Library for Ubuntu18.04(deb)」
+「cuDNN Developer Library for Ubuntu18.04(deb)」
+「cuDNN なんとか for Ubuntu18.04(deb)」
+を公式サイトからダウンロードして
+$sudo dpkg -iで3つのdebパッケージともインストール
+
+<tensorflow>
+仮想環境から
+$conda(pip) install tensorflow-gpu=1.14.0
+
+仮想環境で$python，その後2行のコード↓をコピペしてGPUが使用できるか確認
+https://thr3a.hatenablog.com/entry/20180113/1515820265
+

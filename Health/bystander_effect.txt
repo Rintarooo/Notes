@@ -1,12 +1,10 @@
 Bystander effect
 傍観者効果
-
-If you suffer a heart attack in a crowd, you would be less likely to get help than if there were only one or two people around you.
-
 https://www.scientificamerican.com/video/what-is-the-bystander-effect/
 
-
 SCIENTIFIC AMERICANから引用
+
+If you suffer a heart attack in a crowd, you would be less likely to get help than if there were only one or two people around you.
 
 the more people there are around the less likely bystanders are to intervene in an emergency situation
 人がその場に多ければ多いほど、助けようとする人が減る
@@ -19,10 +17,9 @@ assuming other people such as doctors and police officers are more qualified to 
 behave appropriately
 もっと適した人がいるのではないか
 （fearing harm and ）worrying their intervention will be unneeded or unwanted
-実はいらないんじゃないか
+実はいらないんじゃないかなどのネガティヴな評価を恐れる
 
-などのネガティヴな評価を恐れる
-x   people in the situation which there are a few people are more likely to notice a victim than groups 
+people in the situation which there are a few people are more likely to notice a victim than groups 
 
 
 alone people are more likely to notice a victim than bystanders and group 

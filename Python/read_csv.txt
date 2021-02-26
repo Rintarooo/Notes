@@ -1,0 +1,18 @@
+Python
+
+・ファイル読み込み
+import pandas as pd
+df = pd.read_csv(path, header = None, delimiter = ‘,’, names = [‘class’, ‘id’])
+print(len(df))
+print(df.values)
+df.iloc[:,1] -> column 1
+df.to_csv(save_path, header = False, index = False)
+
+with open(path) as f:
+	dict_ = {‘’ for i in range(8)}
+	lists = f.readlines()
+	for s_line in lists:
+		values = s_line.rstrip().split(‘,’)[1]
+		key = s_line.rstrip().split(‘,’)[0]
+		dict_[key] = values
+	return

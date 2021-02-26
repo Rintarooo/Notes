@@ -1,0 +1,17 @@
+brew install boost
+/usr/local/Cellar/boost/1.73.0/include/
+
+brew install eigen
+/usr/local/Cellar/eigen/3.3.8_1/
+
+brew cask install xquartz
+brew install ie-developers/ie/gnuplot --with-x11 --with-aquaterm
+brew cask install aquaterm
+brew reinstall aquaterm
+
+brew install gnuplot
+/usr/local/Cellar/gnuplot/5.4.0_1
+
+brew list | grep -i boost
+boostをインストールしているか確認
+

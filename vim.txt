@@ -1,0 +1,51 @@
+・インストール方法
+$sudo apt-get install vim
+
+ 
+
+・使用方法
+
+$vim ファイル名
+
+[i] insert mode
+
+[esc] normal mode
+
+[x] erase a letter at normal mode
+
+[:w] write and save
+
+[:q] quit
+
+[:wq] write and save + quit
+
+[:q!] quit without updating
+
+ 
+
+[/なんとか] なんとかを検索
+
+[n]次の検索結果
+
+[N]前の検索結果
+
+[Ctrl+g]行数表示
+
+[shift+g]ラスト行に移動
+
+ 
+
+[v] マーク，ビジュアルモード
+
+[y]マークした部分をcopy(yank)
+[yy] カーソルがある1行をcopy(yank)
+
+[p]マークした部分をpaste(put)
+[pp]カーソルがある1行をpaste(put)
+
+[d]マークした部分をdelete
+[dd]カーソルがある1行をdelete
+
+ 
+
+[u]前の状態に戻る

@@ -1,0 +1,87 @@
+・Google Chrome shortcut for macOS
+
+[command] + [T] open new tab
+
+[command] + [W] close tab
+
+[command] + [F] search specific words
+
+[command] + [B] + [alt(option)] open bookmark manager
+
+[command] + [R] Reload a page
+
+[command] + [Space] Spotlight Search
+
+[control] + ([<-] / [->]) move on to desktop on the right/left side
+
+[command] +( [<- or { ] / [-> or }] ) go to next/previous page
+
+[command] + [alt] + ([<-] / [->]) go to left/right tab
+
+[command] + [shift] + [+] zoom in
+
+[command] + [-] zoom out
+
+[command] + [0] go back to the page size that you set in settings
+
+[space] scroll down
+
+[shift] + [space] scroll up
+
+ 
+
+・Google Chrome command for Linux Ubuntu in Mac keyboard
+
+[control] + [T] open new tab
+
+[control] + [W] close tab
+
+[control] + [F] search specific words
+
+[alt] + ([->] / [<-]) go to next/previous page
+
+[control] + [tab] + ([shift] / [ ]) go to left/right tab
+
+[control] + [^] zoom in
+
+[control] + [-] zoom out
+
+[control] + [alt] + [arrows(up and down)] change another desktop
+
+ 
+
+・Google Chrome command for Linux Ubuntu
+
+[Ctrl] + [T] open new tab
+
+[Ctrl] + [F] search specific words([Esc] close)
+
+[Alt] + [arrows(left and right)] go to previous/next page
+
+ 
+
+[Ctrl] + ([Pg Up] / [Pg Dn])
+
+[Ctrl] + [Tab]([Shift] / )
+
+go to left/right tab
+
+ 
+
+[Ctrl] + [^] zoom in
+
+[Ctrl] + [-] zoom out
+
+[Ctrl] + [Alt] + [arrows(up and down)] change another desktop
+
+ 
+
+* Bookmark
+
+[Ctrl] + [Shift] + [O] open bookmark maneger
+
+[Ctrl] + [D] bookmark web page, [Tab] move category
+
+ 
+
+[Ctrl] + [H] history

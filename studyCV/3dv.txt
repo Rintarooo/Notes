@@ -1,4 +1,4 @@
-
+14-1 camera matrix
 ・ディジタル画像処理 p.312 式(14.13)
 http://www.sanko-shoko.net/note.php?id=g3ft
 https://daily-tech.hatenablog.com/entry/2018/01/22/071346
@@ -9,18 +9,30 @@ https://daily-tech.hatenablog.com/entry/2018/01/23/064926
 「カメラ座標系(X)における投影点を正規画像座標系(x)で表現」
 「正規画像座標系(x)から画像座標系(m)へ」->内部パラメータA
 
-透視投影行列P(3*4の行列) = これらの3つの変換でワールド座標系(Xw)から画像座標系(m)へ
+透視投影行列P(3*4の行列) = これらの3つの変換で「ワールド座標系(Xw)(4*1のベクトル)から画像座標系(m)(3*1のベクトル)へ」
+m(3*1)=P(3*4)・Xw(4*1)
 
-外部パラメータR,t(カメラの位置(t)・向き(R))
+外部パラメータ(extristic parameter)R,t(カメラの位置(t)・向き(R))
 https://mem-archive.com/2018/02/17/post-74
-内部パラメータ
+内部パラメータ(intristic parameter)A(またはK)
+焦点距離:f,原点からの中心の座標(cx,cy)
 Ahttps://mem-archive.com/2018/02/21/post-157/
 
 
+--------------------------------------------
+14-2 camera calibration
+= 透視投影行列P(内部K+外部パラメータR,t)を求めたい
+ワールド座標系(Xw)と画像座標系(m)が既知->求まる
 
+エピポーラ幾何->x'とRx×tの2本のベクトルが直交->内積=0
 
 基礎行列F
 内部K+外部パラメータR,tの情報
 基本行列E
-外部パラメータR,tの情報
+外部パラメータR,tのみの情報
 https://qiita.com/ykoga/items/14300e8cdf5aa7bd8d31
+
+--------------------------------------------
+
+対角化（固有値分解）<->　SVD特異値分解
+MVS(multi-view stereo)多眼ステレオ＝SfMをさらに密に復元

@@ -5,7 +5,7 @@ https://daily-tech.hatenablog.com/entry/2018/01/22/071346
 https://daily-tech.hatenablog.com/entry/2018/01/23/064926
 
 「ワールド座標系(Xw)からカメラ座標系(X)へ」->外部パラメータR,t(カメラの位置(t)・向き(R))
-
+(ワールド座標系(Xw)の点をカメラ座標系(X)で表したい)
 「カメラ座標系(X)における投影点を正規画像座標系(x)で表現」
 「正規画像座標系(x)から画像座標系(m)へ」->内部パラメータA
 
@@ -15,7 +15,7 @@ m(3*1)=P(3*4)・Xw(4*1)
 外部パラメータ(extristic parameter)R,t(カメラの位置(t)・向き(R))
 https://mem-archive.com/2018/02/17/post-74
 内部パラメータ(intristic parameter)A(またはK)
-焦点距離:f,原点からの中心の座標(cx,cy)
+焦点距離:f,画像左上の原点からの中心の座標(距離)(cx,cy)
 Ahttps://mem-archive.com/2018/02/21/post-157/
 
 

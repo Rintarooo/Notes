@@ -49,9 +49,12 @@ $ls のオプションまとめ
 https://eng-entrance.com/linux_command_ls
 
 $chmod
+change permission
 http://motw.mods.jp/UNIX/chmod.html
--rwxr-xr-x — owner - group - other users
-x→permission, w→write, r→read, d→directory
+-rwxr-xr-xで左端が-の場合→file 
+drwxr-xr-xで左端がdの場合→directory(folder)
+user(あなた) - group - other
+x(1)→execute, w(2)→write, r(4)→read
 +(give) -(remove) a(all users)
 $ chmod 777 [何とか].sh
 $ chmod +x [何とか].sh

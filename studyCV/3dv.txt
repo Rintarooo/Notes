@@ -1,4 +1,4 @@
-14-1 camera matrix
+14-1 camera parameter
 ・ディジタル画像処理 p.312 式(14.13)
 http://www.sanko-shoko.net/note.php?id=g3ft
 https://daily-tech.hatenablog.com/entry/2018/01/22/071346
@@ -21,8 +21,10 @@ Ahttps://mem-archive.com/2018/02/21/post-157/
 
 --------------------------------------------
 14-2 camera calibration
-= 透視投影行列P(内部K+外部パラメータR,t)を求めたい
-ワールド座標系(Xw)と画像座標系(m)が既知->求まる
+= 透視投影行列P(カメラパラメータ=内部K+外部パラメータR,t)を求めたい
+求めたいカメラパラメータは，P(3*4の行列)の要素p11~p34の12個からλの定数倍の点を投影しているのでp34=1となり11(=12-1)個
+・DLT法
+既知のワールド座標系の点(Xw)(=Control Point)の写真を撮って画像座標系の点(m)を知る->m=P・Xwより求まる
 
 エピポーラ幾何->x'とRx×tの2本のベクトルが直交->内積=0
 
@@ -33,6 +35,13 @@ Ahttps://mem-archive.com/2018/02/21/post-157/
 https://qiita.com/ykoga/items/14300e8cdf5aa7bd8d31
 
 --------------------------------------------
+ホモグラフィ行列H(3*3)
 
-対角化（固有値分解）<->　SVD特異値分解
+・対角化（固有値分解）
+対象:対称行列A = 自身の転置行列A^Tと一致するような正方行列
+
+・SVD，特異値分解
+対象:どの行列(対称行列Aの場合，固有値=特異値)
+特異値とは? https://qiita.com/kidaufo/items/0f3da4ca4e19dc0e987e
+
 MVS(multi-view stereo)多眼ステレオ＝SfMをさらに密に復元

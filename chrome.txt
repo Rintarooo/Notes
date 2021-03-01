@@ -4,6 +4,8 @@
 
 [command] + [W] close tab
 
+[command] + [shift] + [T] reopen closed tab
+
 [command] + [F] search specific words
 
 [command] + [B] + [alt(option)] open bookmark manager

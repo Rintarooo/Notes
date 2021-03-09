@@ -6,16 +6,21 @@ sourcetree is GUI version
 add(working tree→index(stage))→commit(index→local repository)→push(local repository into remote repository(GitHub))
 
 $git init — make the working directory git file. “.git” file means the file organize history and record the time
+
 $git add . 
 add all files in the working directory into index
 $git add [ファイル名] 
 add specific file
 ワーキングツリーの変更をインデックスに反映
-$git commit -m ‘コメント’
-インデックスをローカルリポジトリに反映
 
-$git remote add origin <paste URL copied from GitHub>
+$git commit -m ‘コメント’
+インデックスの変更をローカルリポジトリに反映
+$git commit --amend -m ‘コメント’
+前回のコミットを消して，インデックスの変更をローカルリポジトリに反映
+
+$git remote add origin <URL copied from GitHub>
 リモート名をoriginに省略する
+$git push <URL copied from GitHub> masters
 $git push origin masters
 ローカルリポジトリの変更をリモートリポジトリ（GitHub）に反映
 
@@ -39,7 +44,7 @@ $git diff HEAD
 $git log | head — 過去のコミットのハッシュ値を確認
 $git log -2 — 過去の2件のコミットのハッシュ値を確認
 $git log -p 修正内容・差分表示
-$git clone <paste URL fetched from GitHub> 
+$git clone <URL fetched from GitHub> 
 GitHub上のリポジトリをローカルに落とす
 
 ブランチ=履歴の先頭コミット

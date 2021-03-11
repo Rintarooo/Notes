@@ -78,5 +78,8 @@ https://blog.albert2005.co.jp/2020/07/22/nerural-3d-representation/
 メッシュ（テクスチャ）→?
 
 ROS indigo（indigoではなくkineticが最新のディストリビューション）（catkin（ビルド用，CMakeのROS拡張版））, rqt（ノード管理を表示），RViz（可視化），Gazebo（シミュレータ），tf（座標変換）
-Bundler（SfMのOSS）
+Bundler（SfMのOSS）, Blender(3D modeling)
+
+slam 課題: Deepだと学習環境でしか精度でない, 移動物体(歩行者)などがいる動的環境で特徴点マッチングうまくいかない, CPUで高速に(計算量)
+
 

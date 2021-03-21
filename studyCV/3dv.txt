@@ -16,7 +16,7 @@ m(3*1)=P(3*4)・Xw(4*1)
 
 外部パラメータ(extristic parameter)R,t(カメラの位置(並進ベクトル)(t)・向き(回転行列)(R))
 https://mem-archive.com/2018/02/17/post-74
-ちなみに回転行列Rは，9つの変数で表される3自由度(x,y,z軸回転のθが3つ)の直行行列(各列ベクトルが直交(->内積0)，ノルム=1，の式から9つの変数のいくつか解ける)
+ちなみに回転行列Rは，9つの変数で表される3自由度(x,y,z軸回転のθが3つ)の直行行列(各列ベクトルが直交(->内積0)，ノルム=1，の式(内積0が3つ，ノルム=1が3つの合計6つの式)から9つの変数が3(=9-6)つの要素で決まる)
 
 内部パラメータ(intristic parameter)A(またはK)
 焦点距離:f,画像左上の原点からの中心の座標(距離)(cx,cy)
@@ -35,9 +35,9 @@ https://mem-archive.com/2018/02/21/post-157/
 https://daily-tech.hatenablog.com/entry/2018/01/21/185633
 
 カメラの位置・姿勢を求めたい
-(2D,2Dの組)->epipolar geometry
-(3D,3Dの組)->ICP
-(3D,2Dの組)->PnP
+(既知の2D,2Dの組)->epipolar geometry, Homography
+(既知の3D,3Dの組)->ICP
+(既知の3D,2Dの組)->PnP
 
 ・DLT法(P6Pのとき)
 2N>=11 -> N>=6>5.5
@@ -70,11 +70,12 @@ m = H * m'
 ・DLT法，最小二乗法(Ah=0からベクトルh求める，AをSVD分解する->特異値が最も小さいAA^Tの固有ベクトル=ベクトルh(h11~h19)=行列H)
 
 ->最小二乗法とは
-Ax=b
-Σ(y-(ax+b))^2の最小化，求めたいのはy=ax+bのa,bの係数
-(1 x)(a b)^T=(y)
+Ax=0
+(n*3)(3*1) = (n*1)
+[[1 x1 y1],[1 x2 y2], ..., [1 xn yn]] * [a b c]^T=[0,0,..,0]
 https://mathtrain.jp/leastsquarematrix
 https://daily-tech.hatenablog.com/entry/2018/03/27/064626
+https://daily-tech.hatenablog.com/entry/2018/03/18/180439
 
 
 エピポーラ幾何
@@ -94,11 +95,20 @@ https://qiita.com/kidaufo/items/0f3da4ca4e19dc0e987e
 --------------------------------------------
 SfM(Structure from Motion)
 画像間の対応点からカメラの回転R,並進tと3次元世界座標点を求める
+1. 画像特徴点抽出(SIFT, ORBとか)
+2. 特徴点マッチング
+3. 画像間の対応特徴点を利用して，エピポーラ幾何から，基礎行列F->基本行列E=カメラの回転R,並進tの順で求める
+4. 透視投影行列P(カメラの外部パラメータR,tは3.で求めた．内部パラメータKは予めキャリブレーションで既知とする)から3次元世界座標点[Xw, Yw, Zw, 1]を求める(ディジタル画像処理 p.319 式(14.34) 式(14.35))
+
+SfMLearner[CVPR2017]
+->単眼カメラで撮影された動画(Consecutive frames)を入力に,上記手順の3.のego-motionと4.のDepthを推定するよう自己教師学習(Self-Supervised Learning)
+
 (2D,2Dの組)->epipolar
 画像間の対応点が8組->8点アルゴリズム
-->基礎行列E(Fundamental Matrix)を求める
-5点
 ->基本行列E(Essential Matrix)を求める
+->基礎行列F(Fundamental Matrix)を求める
+5点
+
 
 --------------------------------------------
 MVS(multi-view stereo)多眼ステレオ＝SfMをさらに密に復元
@@ -107,3 +117,4 @@ MVS(multi-view stereo)多眼ステレオ＝SfMをさらに密に復元
 BA(Bundle Adjustment)
 バンドル調整
 推測した3次元点を画像に投影してみると，実際の投影点からずれる(再投影誤差)
+このずれを最小化

@@ -1,3 +1,11 @@
+・shortcut macOS
+
+[command] + [Tab] Change current Application
+
+[command] + [Space] Spotlight Search
+
+[control] + ([<-] / [->]) move on to desktop on the right/left side
+
 ・Google Chrome shortcut for macOS
 
 [command] + [T] open new tab
@@ -11,10 +19,6 @@
 [command] + [B] + [alt(option)] open bookmark manager
 
 [command] + [R] Reload a page
-
-[command] + [Space] Spotlight Search
-
-[control] + ([<-] / [->]) move on to desktop on the right/left side
 
 [command] +( [<- or { ] / [-> or }] ) go to next/previous page
 

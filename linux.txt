@@ -32,6 +32,7 @@ $cd = change current directory
 $cd .(/) change into current directory (which means doesn’t change directory)
 $cd ..(/) change directory into parent one
 $cd ~, (cd) change directory into home directory
+$cd -, change directory back into previous directory
 
 
 $ls=list

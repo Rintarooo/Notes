@@ -1,2 +1,8 @@
-> getwd()
+https://cran.r-project.org/doc/contrib/Paradis-rdebuts_en.pdf
+
+> getwd(" ")
 show current working dir
+
+> setwd()
+set working dir
+

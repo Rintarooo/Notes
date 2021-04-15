@@ -6,3 +6,6 @@ show current working dir
 > setwd()
 set working dir
 
+> ls()
+print variables you defined so far
+

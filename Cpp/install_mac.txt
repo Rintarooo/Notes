@@ -3,6 +3,7 @@ brew install boost
 
 brew install eigen
 /usr/local/Cellar/eigen/3.3.8_1/
+eigen is the library for linear algebra
 
 brew cask install xquartz
 brew install ie-developers/ie/gnuplot --with-x11 --with-aquaterm
@@ -14,4 +15,9 @@ brew install gnuplot
 
 brew list | grep -i boost
 boostをインストールしているか確認
+
+brew search opencv
+brew install opencv
+(this install may take some time)
+https://qiita.com/niwasawa/items/87feb5f7923bbe2a7e26
 

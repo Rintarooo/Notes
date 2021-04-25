@@ -5,14 +5,20 @@ Windows: 左下のメニューで「dxdiag」を検索して，実行
 https://pc-kaizen.com/windows7-confirm-the-graphics-card
 Linux: $sudo lshw -c video
 
-・Rufus is an open source software that change a USB into the ’live USB’, which allows the computer recognizes a USB as an OS installer. 
-https://pc-freedom.net/software/rufus%E3%81%A7linux%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%83%A1%E3%83%87%E3%82%A3%E3%82%A2%E3%82%92%E4%BD%9C%E3%82%8B%E3%80%82/
-手順→https://ja.unflf.com/dualboot-ubuntu-windows/
 
-<Linux(ubuntu).18.04 LTS>
-１．ISOファイルをubuntuの公式サイトからダウンロードしてUSBにコピーする
+
+<Linux(ubuntu).18.04 LTS(をWindowsが入ってるPCにデュアルブートする)>
+１．ISOファイルをubuntuの公式サイト(https://ubuntu.com/download/desktop)からダウンロードして，その後ISOファイルをUSBにコピーする
 ２．Ubuntu用にパーティションを作成，Cドライブの部分を右クリックしてボリュームの縮小
-３．そのUSBをコンピュータにOSインストーラー(Live USBという)として認識させるため，Rufus(もしくはUNetbootin)というのを検索して公式サイトからダウンロードして実行する
+３．そのUSBをコンピュータにOSインストーラー(Live USBという)として認識させるため，Rufus^*(もしくはUNetbootin)というのを検索して公式サイトからダウンロードして実行する
+
+* Rufus is an open source software that change a USB into the ’live USB’, which allows the computer recognizes a USB as an OS installer. 
+(Rufusサイト)
+https://rufus.ie/en_US/
+(参考サイト)
+https://pc-freedom.net/software/rufus%E3%81%A7linux%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%83%A1%E3%83%87%E3%82%A3%E3%82%A2%E3%82%92%E4%BD%9C%E3%82%8B%E3%80%82/
+
+
 ４．PCを再起動させて，PCを起動したときのロゴ画面で[del]キー(このキーはPCのメーカー，種類によって違う)を押し，BiosでWindowsではなくUSBを優先起動[priorityらへん]させるよう順序をいじる
 ５．USBを指して再び起動してtry ubuntu without installを選択
 ６．地域は現地、keyboard layoutはJapaneseを選択(USキーボードではなくJISキーボードを使っている場合)

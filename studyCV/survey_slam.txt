@@ -1,0 +1,34 @@
+http://cygx.mydns.jp/blog/?arti=559
+
+リスト
+1. IMU/カメラ画像/Lidar(Depth)
+2. 単眼カメラからの密な3次元復元（Dense 3D Reconstruction from monocular image, real-time SfM, Monocular SLAM）
+
+
+2.Monocular SLAM
+・DTAM.2011
+約10年前 実装がない(OpenDTAMはGithub上にある)　精度良
+
+動画
+https://www.youtube.com/watch?v=Df9WhgibCQA&ab_channel=imperialrobotvision
+paper
+https://www.doc.ic.ac.uk/~ajd/Publications/newcombe_etal_iccv2011.pdf
+GPU上で動く
+https://noshumi.blogspot.com/2017/08/lsd-slam.html
+
+
+・Dynamic Fusion.2015
+動いている人もリアルタイム復元
+http://www.youtube.com/watch?v=i1eZekcc_lM
+
+・Yさん実装
+https://www.youtube.com/watch?v=TZ1eToXQwN0&ab_channel=MobileRoboticsResearchTeam-MR2T-MobileRoboticsResearchTeam-MR2T-
+
+・課題
+精度・正則化（外れ値）特徴量の対応付けに失敗、スケール不定
+静止物体ではなく動物体に対応可
+テクスチャのない(textureless)部分はどう特徴量える？
+
+cube-slam 深層学習（3dbbox）を上手く取り入れた手法
+
+track-> 6d camera motion(pose)

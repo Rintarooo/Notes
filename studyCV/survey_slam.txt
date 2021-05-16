@@ -6,8 +6,9 @@ http://cygx.mydns.jp/blog/?arti=559
 
 
 2.Monocular SLAM
-・DTAM.2011
+・DTAM(Dense Tracking and Motion).2011
 約10年前 実装がない(OpenDTAMはGithub上にある)　精度良
+PTAMは2007
 
 動画
 https://www.youtube.com/watch?v=Df9WhgibCQA&ab_channel=imperialrobotvision
@@ -25,10 +26,13 @@ http://www.youtube.com/watch?v=i1eZekcc_lM
 https://www.youtube.com/watch?v=TZ1eToXQwN0&ab_channel=MobileRoboticsResearchTeam-MR2T-MobileRoboticsResearchTeam-MR2T-
 
 ・課題
-精度・正則化（外れ値）特徴量の対応付けに失敗、スケール不定
+精度・正則化（外れ値）特徴量の対応付けに失敗、スケール不定(scale uncertainty)->単眼カメラによるVisual SLAMの原理と3次元再構成の実装例
 静止物体ではなく動物体に対応可
 テクスチャのない(textureless)部分はどう特徴量える？
+ノイズ（人の手が入る）の除去
 
 cube-slam 深層学習（3dbbox）を上手く取り入れた手法
 
-track-> 6d camera motion(pose)
+・用語（https://noshumi.blogspot.com/2017/08/lsd-slam.html）
+自己位置推定(tracking)-> 6d camera motion(pose)
+パッチ->４pixel*4pixelの四角形

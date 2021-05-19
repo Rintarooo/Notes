@@ -4,11 +4,20 @@ http://cygx.mydns.jp/blog/?arti=559
 1. IMU/カメラ画像/Lidar(Depth)
 2. 単眼カメラからの密な3次元復元（Dense 3D Reconstruction from monocular image, real-time SfM, Monocular SLAM）
 
+1.
+VIRAL (visual-inertial-ranging-lidar) SLAM, sensor fusion
+LIC-Fusion: LiDAR-Inertial-Camera Odometry
+“Laser–visual–inertial odometry and mapping
+with high robustness and low drift,” (J. Zhang and S. Singh)
+
 
 2.Monocular SLAM
+vslam流れ->https://noshumi.blogspot.com/2017/05/visual-slam-1visual-slam.html
+
 ・DTAM(Dense Tracking and Motion).2011
 約10年前 実装がない(OpenDTAMはGithub上にある)　精度良
-PTAMは2007
+loop close検出持たない->机の上程度のみ，広範囲のSLAMは不可能
+PTAM(2007)は特徴点を抽出する方法(indirect)
 
 動画
 https://www.youtube.com/watch?v=Df9WhgibCQA&ab_channel=imperialrobotvision
@@ -22,6 +31,15 @@ https://noshumi.blogspot.com/2017/08/lsd-slam.html
 動いている人もリアルタイム復元
 http://www.youtube.com/watch?v=i1eZekcc_lM
 
+・LSD-SLAM(Large Scale).2014
+デモ動画でARの車走らせてるやつ
+CPUでも動く
+公式ページ->https://vision.in.tum.de/research/vslam/lsdslam
+
+・DSO(Direct Sparse Odometry).2017
+https://www.slideshare.net/MasayaKaneko/direct-sparse-odometry
+
+
 ・Yさん実装
 https://www.youtube.com/watch?v=TZ1eToXQwN0&ab_channel=MobileRoboticsResearchTeam-MR2T-MobileRoboticsResearchTeam-MR2T-
 
@@ -31,8 +49,15 @@ https://www.youtube.com/watch?v=TZ1eToXQwN0&ab_channel=MobileRoboticsResearchTea
 テクスチャのない(textureless)部分はどう特徴量える？
 ノイズ（人の手が入る）の除去
 
-cube-slam 深層学習（3dbbox）を上手く取り入れた手法
+cube-slam 深層学習（3d bbox）を上手く取り入れた手法
+
 
 ・用語（https://noshumi.blogspot.com/2017/08/lsd-slam.html）
 自己位置推定(tracking)-> 6d camera motion(pose)
 パッチ->４pixel*4pixelの四角形
+SO(3)->special orthogonal 特殊直行群(slambook-en.pdf(https://github.com/gaoxiang12/slambook-en) page50 式(3.7)を満たすグループの行列のこと)，3次元回転
+SE(3)->特殊ユークリッド群，3次元剛体変換(3次元回転+並進)
+a×b = a^b a^は歪対称行列（定義：A^t(Aの転置)=-A）, ベクトルの外積を行列で表したい．^([]x)はオペレータ(slambook-en.pdf page48 式(3.3)より)
+ノルム->距離の最小化（https://library.naist.jp/mylimedio/dllimedio/showpdf2.cgi/DLPDFR008313_P1-60）
+測光誤差，逆投影関数Π^-1(2D->3D)->
+14pageめ/58(https://www.slideshare.net/MasayaKaneko/direct-sparse-odometry)

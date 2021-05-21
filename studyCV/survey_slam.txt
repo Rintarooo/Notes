@@ -27,14 +27,16 @@ GPU上で動く
 https://noshumi.blogspot.com/2017/08/lsd-slam.html
 
 
+・LSD-SLAM(Large Scale).2014
+デモ動画でARの車走らせてるやつ
+CPUでも動く，directな手法，denseではなくsemi-dense
+DTAMと異なりループ検出あるので，机の上だけじゃなくlarge scaleに適用可能
+公式ページ->https://vision.in.tum.de/research/vslam/lsdslam
+
+
 ・Dynamic Fusion.2015
 動いている人もリアルタイム復元
 http://www.youtube.com/watch?v=i1eZekcc_lM
-
-・LSD-SLAM(Large Scale).2014
-デモ動画でARの車走らせてるやつ
-CPUでも動く
-公式ページ->https://vision.in.tum.de/research/vslam/lsdslam
 
 ・DSO(Direct Sparse Odometry).2017
 https://www.slideshare.net/MasayaKaneko/direct-sparse-odometry
@@ -61,3 +63,7 @@ a×b = a^b a^は歪対称行列（定義：A^t(Aの転置)=-A）, ベクトル�
 ノルム->距離の最小化（https://library.naist.jp/mylimedio/dllimedio/showpdf2.cgi/DLPDFR008313_P1-60）
 測光誤差，逆投影関数Π^-1(2D->3D)->
 14pageめ/58(https://www.slideshare.net/MasayaKaneko/direct-sparse-odometry)
+
+
+https://daily-tech.hatenablog.com/entry/2016/04/29/145737
+現在のキーフレームを Ki = (Ii,Di,Vi) とすると，新しいイメージ Ij の相対 3次元ポーズ ξji∈se(3) は，下記の分散値で正規化された測光誤差関数を最小化することによって求められる

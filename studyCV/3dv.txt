@@ -1,5 +1,6 @@
 14-1 camera parameter
 ・ディジタル画像処理 p.312 式(14.13)
+https://www.slideshare.net/SSII_Slides/ssii2019ts3-149136612
 http://www.sanko-shoko.net/note.php?id=g3ft
 https://daily-tech.hatenablog.com/entry/2018/01/22/071346
 https://daily-tech.hatenablog.com/entry/2018/01/23/064926
@@ -9,6 +10,10 @@ http://www.cse.psu.edu/~rtc12/CSE486/lecture13.pdf
 (ワールド座標系(Xw)の点をカメラ座標系(X)で表したい)
 「カメラ座標系(X)における点を画像に投影した点を正規画像座標系(x)で表現」
 「正規画像座標系(x)から画像座標系(m)へ」->内部パラメータA
+
+
+正規画像座標系(x) = 画像の中心が原点，z=1
+画像座標系(m) = 左上が原点，z=f(fは焦点距離)
 
 透視投影行列P(3*4の行列) = これらの3つの変換で「ワールド座標系(Xw)(4*1のベクトル)から画像座標系(m)(3*1のベクトル)へ」
 m(3*1)=P(3*4)・Xw(4*1)

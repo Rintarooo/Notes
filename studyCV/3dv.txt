@@ -104,7 +104,7 @@ SfM(Structure from Motion)
 SfMLearner[CVPR2017]
 ->単眼カメラで撮影された動画(Consecutive frames)を入力に,上記手順の3.のego-motionと4.のDepthを推定するよう自己教師学習(Self-Supervised Learning)
 
-(2D,2Dの組)->epipolar
+(既知の2D,2Dの組(異なる2枚の画像の中の点（同じ3次元の点が投影された点）同士))->epipolar
 画像間の対応点が8組->8点アルゴリズム
 ->基本行列E(Essential Matrix)を求める
 ->基礎行列F(Fundamental Matrix)を求める

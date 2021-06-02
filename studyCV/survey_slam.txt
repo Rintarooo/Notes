@@ -28,21 +28,28 @@ https://noshumi.blogspot.com/2017/08/lsd-slam.html
 
 
 ・LSD-SLAM(Large Scale).2014
+
 デモ動画でARの車走らせてるやつ
-CPUでも動く，directな手法，denseではなくsemi-dense
-DTAMと異なりループ検出あるので，机の上だけじゃなくlarge scaleに適用可能
+CPUでも動く，directな手法，denseではなくsemi-dense(画像勾配が大きい画素のみ3D復元)
+DTAM(2011)と異なりループ検出あるので，机の上だけじゃなくlarge scaleに適用可能
 公式ページ->https://vision.in.tum.de/research/vslam/lsdslam
 
-解説url
+- 解説url
+https://noshumi.blogspot.com/2017/08/lsd-slam.html#more
 https://www.slideshare.net/kazuya_tennis/slam3-lsdslam
 https://www2.slideshare.net/satoshibfujimoto/2cv-lsdslam?next_slideshow=1
 https://daily-tech.hatenablog.com/entry/2016/04/29/145737
 単眼カメラによるVisual SLAMの原理と3次元再構成の実装例，小林祐一
-
+- LSD-SLAMの深度推定の部分の関連論文
+Semi-dense visual odometry for a monocular
+camera.2013
+SVO(Fast Semi-Direct Monocular Visual Odometry).2014
+Scale Drift-Aware Large Scale Monocular SLAM
 
 ・Dynamic Fusion.2015
 動いている人もリアルタイム復元
 http://www.youtube.com/watch?v=i1eZekcc_lM
+
 
 ・DSO(Direct Sparse Odometry).2017
 https://www.slideshare.net/MasayaKaneko/direct-sparse-odometry

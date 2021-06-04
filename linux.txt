@@ -155,14 +155,20 @@ $exit() or [Ctrl]+D quit
 $python [ファイル名.py] 
 実行
 
-例えば以下は、ls コマンドでカレントディレクトリのファイル一覧を取得し、「txt」が含まれる行だけ表示する例。
+・検索
+例えば以下は、ls コマンドでカレントディレクトリのファイル一覧を取得し、ファイル名に「txt」が含まれるファイルだけ表示する例。
 $ls | grep txt
 小文字・大文字を区別しないときは-iオプションつける
 $ls | grep -i txt
 
-findはディレクトリの階下までさがす　find . -iname “*.py”
-カレントディレクトリ以下で”OOO”を文字列に含むものを探す
+findはディレクトリの階下までさがす
+$find . -iname “*.py”
 $find . -iname “*OOO*”
+-> 現在位置するカレントディレクトリ以下のディレクトリでファイル名に”OOO”の文字列に含むファイルを探す
+
+$find [検索対象フォルダのパス] -type f -print | xargs grep '[検索したい文字列]'
+$find . -type f -print | xargs grep 'se3From'
+https://qiita.com/pokari_dz/items/0f14a21e3ca3df025d21
 
 $ df -h
 display free disk space(全体の)

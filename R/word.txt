@@ -2,8 +2,10 @@ random variable 確率変数
 random number 乱数
 population　母集団
 Variance　分散
+Covariance　共分散
 sample variance 標本分散
 Standard Deviation(SD) 標準偏差
+Correlation coefficient 相関係数
 normal distribution(Gaussian distribution) 正規(ガウス)分布
 Test Statistics 検定統計量
 Null Hypothesis 帰無仮説

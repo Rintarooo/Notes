@@ -2,7 +2,7 @@ http://cygx.mydns.jp/blog/?arti=559
 
 リスト
 1. IMU/カメラ画像/Lidar(Depth)
-2. 単眼カメラからの密な3次元復元（Dense 3D Reconstruction from monocular image, real-time SfM, Monocular SLAM）
+2. オンライン（リアルタイム）単眼カメラからの密な3次元復元（Dense 3D Reconstruction from monocular image, real-time SfM, Monocular SLAM）
 
 1.
 VIRAL (visual-inertial-ranging-lidar) SLAM, sensor fusion
@@ -12,7 +12,7 @@ with high robustness and low drift,” (J. Zhang and S. Singh)
 
 
 2.Monocular SLAM
-vslam流れ->https://noshumi.blogspot.com/2017/05/visual-slam-1visual-slam.html
+vslam歴史的な流れ(簡易版)->https://noshumi.blogspot.com/2017/05/visual-slam-1visual-slam.html
 
 ・DTAM(Dense Tracking and Motion).2011
 約10年前 実装がない(OpenDTAMはGithub上にある)　精度良
@@ -40,11 +40,13 @@ https://www.slideshare.net/kazuya_tennis/slam3-lsdslam
 https://www2.slideshare.net/satoshibfujimoto/2cv-lsdslam?next_slideshow=1
 https://daily-tech.hatenablog.com/entry/2016/04/29/145737
 単眼カメラによるVisual SLAMの原理と3次元再構成の実装例，小林祐一
-- LSD-SLAMの深度推定の部分の関連論文
+- LSD-SLAMの関連論文
+-- 深度推定
 Semi-dense visual odometry for a monocular
 camera.2013
 SVO(Fast Semi-Direct Monocular Visual Odometry).2014
-Scale Drift-Aware Large Scale Monocular SLAM
+-- グラフ最適化・Loop Closure
+Scale Drift-Aware Large Scale Monocular SLAM.2010
 
 ・Dynamic Fusion.2015
 動いている人もリアルタイム復元
@@ -59,10 +61,10 @@ https://www.slideshare.net/MasayaKaneko/direct-sparse-odometry
 https://www.youtube.com/watch?v=TZ1eToXQwN0&ab_channel=MobileRoboticsResearchTeam-MR2T-MobileRoboticsResearchTeam-MR2T-
 
 ・課題
-精度・正則化（外れ値）特徴量の対応付けに失敗、スケール不定(scale uncertainty)->単眼カメラによるVisual SLAMの原理と3次元再構成の実装例
+課題点→高いフレームレートを要する(>30fps)，復元精度の改善,
+正則化（外れ値・ノイズ（人の手が入るなど）除去）特徴量の対応付けに失敗、スケール不定(scale uncertainty)->単眼カメラによるVisual SLAMの原理と3次元再構成の実装例
 静止物体ではなく動物体に対応可
 テクスチャのない(textureless)部分はどう特徴量える？
-ノイズ（人の手が入る）の除去
 
 cube-slam 深層学習（3d bbox）を上手く取り入れた手法
 
@@ -84,3 +86,6 @@ https://daily-tech.hatenablog.com/entry/2016/04/29/145737
 
 inverse depth map -> propagate from frame to frame, refine
 image alignment
+
+convergence radius for sim(3) tracking 
+coarse to fine approach - pyramid level

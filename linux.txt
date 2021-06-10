@@ -16,6 +16,8 @@ $sudo reboot 再起動
 
 [Ctrl]+[c] cancel
 
+[Ctrl]+[a] go to the head in prompt
+
 [Ctrl]+[u] clear input
 
 [Ctrl]+[d] close terminal
@@ -166,8 +168,9 @@ $find . -iname “*.py”
 $find . -iname “*OOO*”
 -> 現在位置するカレントディレクトリ以下のディレクトリでファイル名に”OOO”の文字列に含むファイルを探す
 
-$find [検索対象フォルダのパス] -type f -print | xargs grep '[検索したい文字列]'
-$find . -type f -print | xargs grep 'se3From'
+$find [検索対象フォルダのパス] -type f -print | xargs grep '[ファイルの中で検索したい文字列]'
+$find . -type f -print | xargs grep -n 'se3From'
+$find . -iname '*.h' -type f -print | xargs grep -n 'se3From'
 https://qiita.com/pokari_dz/items/0f14a21e3ca3df025d21
 
 $ df -h

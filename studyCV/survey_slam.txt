@@ -88,4 +88,4 @@ inverse depth map -> propagate from frame to frame, refine
 image alignment
 
 convergence radius for sim(3) tracking 
-coarse to fine approach - pyramid level
+coarse to fine approach - pyramid level, coarse（上のlevel, 小さい画像（ピクセル数少ない，粗い画像））, go down from top level to the bottom

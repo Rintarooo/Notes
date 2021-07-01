@@ -36,7 +36,7 @@ $ docker run -it --rm alpine /bin/sh
 $ docker run -it --rm ubuntu:latest /bin/bash
 →root@[コンテナID]:/
 
-$ runはコンテナの立ち上げ
+$ runはimageからコンテナの立ち上げ
 $ exit または[control]+d
 exit from the container
 
@@ -65,8 +65,9 @@ ${PWD}はホスト側のカレントディレクトリ
 
 alpine/git:latest
 
-$ docker build -t イメージ名:タグ名 .
+$ docker build -t イメージ名:タグ名 ./
 -t/--tag 
+「イメージ名:タグ名」のイメージをカレントディレクトリから作成
 
 $ docker stop [コンテナID]
 立ち上げているコンテナを停止

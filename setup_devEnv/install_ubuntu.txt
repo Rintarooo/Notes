@@ -32,7 +32,9 @@ https://www.kkaneko.jp/tools/linux/unetbootin.html
 <MOZC>
 右上選択してregion&languageをクリック
 真ん中のInput Sourcesの[+]のとこをクリックして，Japaneseをクリック，Mozcをクリック
-Mozcがない場合はインストール→https://www.karelie.net/install-ibus-mozc-1804/
+Mozcがない場合はインストール
+ubuntu 18.04→https://www.karelie.net/install-ibus-mozc-1804/
+ubuntu 20.04->http://pa-kamedia.net/2020/08/10/%E3%80%90ubuntu-20-04-lts%E3%80%91%E6%97%A5%E6%9C%AC%E8%AA%9E%E5%85%A5%E5%8A%9B/
 
 <proxy GUI>
 https://usado.jp/spdsk/2018/05/14/post-3699/

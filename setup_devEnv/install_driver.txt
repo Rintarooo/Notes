@@ -11,22 +11,26 @@ https://www.tensorflow.org/install/source
 
 <Nvidia driver>
 まず，nouveauとかいうデフォルトのドライバを無効にする
-$cd /etc/modprobe.d/
-$ls
-$vim blacklist-nvidia-nouveau.conf
+$sudo vim /etc/modprobe.d/blacklist-nvidia-nouveau.conf
+# /etc/modprobe.d/blacklist-nouveau.conf
+
 に以下を書き込む
 blacklist nouveau
 options nouveau modeset=0                                           
 
 $sudo update-initramfs -u
 で読み込む
-$lsmod | grep -i nouveau
-で何も出てこないこと(nouveauが無効になったこと)を確認する 
 $sudo reboot
 再起動すると，画面の解像度が落ちる
+$lsmod | grep -i nouveau
+で何も出てこないこと(nouveauが無効になったこと)を確認する 
+
 
 ここからは2種類の方法(おすすめは前者より後者)
 ・1. リポジトリからダウンロード(非推奨)
+$lspci | grep VGA
+GPUの型を確認 (NVIDIA製のものがある確認)。
+
 nvidia driver install
 ppa(非公式のマーケット)とかいうものをリポジトリに追加
 $sudo add-apt-repository ppa:graphics-drivers/ppa
@@ -35,6 +39,9 @@ $sudo apt-get upgrade
 https://ymgsapo.com/2019/02/26/keras-gpu-deep-learning/
 $ubuntu-drivers devices
 でおすすめのドライバのバージョンを表示(応答に少し時間かかる)
+
+recommended が付いているドライバーをインストール
+$sudo apt install -y nvidia-driver-460
 
 ・2. 公式サイトから自分の欲しいversionのドライバーをダウンロード(推奨)
 公式サイト→https://www.nvidia.com/download/index.aspx

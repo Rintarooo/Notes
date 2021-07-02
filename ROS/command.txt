@@ -7,6 +7,11 @@ $ roscore
 
 $ curl -O https://vision.in.tum.de/rgbd/dataset/freiburg1/rgbd_dataset_freiburg1_desk.bag
 $ rosbag info [hoge.bag]
-$ rosbag play [hoge.bag]
+$ rosbag play [hoge.bag] -l
+-l オプションは無限ループ再生
 $ rostopic list
+$ rostopic list -v
 $ rosrun image_view image_view image:=[your desired topic for image stream]
+
+# roslaunch [package] [launch file] 
+$ roslaunch gazebo_ros empty_world.launch 

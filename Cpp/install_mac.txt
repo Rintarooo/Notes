@@ -21,3 +21,5 @@ brew install opencv
 (this install may take some time)
 https://qiita.com/niwasawa/items/87feb5f7923bbe2a7e26
 
+$ brew list --versions | grep -i opencv
+opencv 4.5.2 on Mac

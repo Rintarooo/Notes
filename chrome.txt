@@ -12,7 +12,7 @@
 
 [command] + [W] close tab
 
-[command] + [shift] + [T] reopen closed tab
+[command] + [shift] + [T] open recent closed tab
 
 [command] + [F] search specific words
 

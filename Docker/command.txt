@@ -51,10 +51,10 @@ Automatically remove the container when it exits
 -v ${PWD} : container hoge
 mount 
 ホスト側のファイルをコンテナ内で使いたいときに使う
-${PWD}はホスト側のカレントディレクトリ 
-
- -w
- Working directory inside the container
+${PWD}はホスト側のカレントディレクトリの絶対パス（相対パスはダメ）
+ 
+-w
+Working directory inside the container
 これ使わないとコンテナのルートディレクトリから始まる
 
 --name
@@ -67,7 +67,7 @@ alpine/git:latest
 
 $ docker build -t イメージ名:タグ名 ./
 -t/--tag 
-「イメージ名:タグ名」のイメージをカレントディレクトリから作成
+「イメージ名:タグ名」のイメージを，カレントディレクトリから作成
 
 $ docker stop [コンテナID]
 立ち上げているコンテナを停止

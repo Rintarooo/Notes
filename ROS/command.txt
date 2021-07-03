@@ -17,6 +17,7 @@ $ rosbag play [hoge.bag] -l
 $ rostopic list
 $ rostopic list -v
 
+$ rosrun [package] [node]
 $ rosrun image_view image_view image:=[your desired topic for image stream]
 # rosrun image_view image_view image:=/camera/depth/image
 
@@ -24,3 +25,10 @@ $ rostopic echo [topic]
 
 # roslaunch [package] [launch file] 
 $ roslaunch gazebo_ros empty_world.launch 
+
+
+
+1. catkinでビルド(xml, CMakeLists.txtを用いて), $ cd ~/catkin_ws && catkin_make
+ -> node(実行可能ファイル)生成
+2. rosrunでpackageのnodeを実行, $ roscore $ rosrun [package] [node]
+(2. 複数nodeを実行する場合, launchファイル使う $ roslaunch [package] [launch file])

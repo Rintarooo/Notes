@@ -17,9 +17,9 @@ $ rosbag play [hoge.bag] -l
 $ rostopic list
 $ rostopic list -v
 
-$ rosrun [package] [node]
-$ rosrun image_view image_view image:=[your desired topic for image stream]
-# rosrun image_view image_view image:=/camera/depth/image
+# rosrun [package] [node]
+# rosrun image_view image_view image:=[your desired topic for image stream]
+$ rosrun image_view image_view image:=/camera/depth/image
 
 $ rostopic echo [topic]
 
@@ -27,8 +27,24 @@ $ rostopic echo [topic]
 $ roslaunch gazebo_ros empty_world.launch 
 
 
+0.
+$ mkdir -p ~/catkin_ws/src
+$ cd ~/catkin_ws/src
+$ catkin_init_workspace
+$ source ~/catkin_ws/devel/setup.bash
 
-1. catkinでビルド(xml, CMakeLists.txtを用いて), $ cd ~/catkin_ws && catkin_make
+1. 
+# catkin_create_pkg [パッケージ名] [依存するパッケージ1]…[依存するパッケージn]
+$ catkin_create_pkg my_first_ros_pkg std_msgs roscpp
+package.xmlとCMakeLists.txtを含んだmy_first_ros_pkgフォルダを作っています
+
+2. 
+catkinでビルド(xml, CMakeLists.txtを用いて), $ cd ~/catkin_ws && catkin_make
+ワークスペース中のすべてのパッケージのビルド
  -> node(実行可能ファイル)生成
-2. rosrunでpackageのnodeを実行, $ roscore $ rosrun [package] [node]
+
+3. 
+rosrunでpackageのnodeを実行
+$ roscore 
+別のターミナルで$ rosrun [package] [node]
 (2. 複数nodeを実行する場合, launchファイル使う $ roslaunch [package] [launch file])

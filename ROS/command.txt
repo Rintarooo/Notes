@@ -2,9 +2,6 @@ $ env | grep ROS
 $ rosnode list
 $ rosnode info [node name]
 
-# 初期化
-$ catkin_init_workspace
-
 
 # start master node
 $ roscore
@@ -28,21 +25,23 @@ $ rostopic echo [topic]
 $ roslaunch gazebo_ros empty_world.launch 
 
 
-0.
+0.(ワークスペースの作成，1度実行すれば今後は実行する必要がない)
 $ source /opt/ros/kinetic/setup.zsh
 $ mkdir -p catkin_ws/src
 $ cd catkin_ws/src
-### $ catkin_init_workspace
+$ catkin_init_workspace
+
 
 1. 
-# catkin_create_pkg [パッケージ名] [依存するパッケージ1]…[依存するパッケージn]
 $ cd catkin_ws/src
+# catkin_create_pkg [パッケージ名] [依存するパッケージ1]…[依存するパッケージn]
 $ catkin_create_pkg my_first_ros_pkg std_msgs roscpp
-package.xmlとCMakeLists.txtを含んだcatkin_ws/src/my_first_ros_pkgフォルダを作っています
+package.xmlとCMakeLists.txtを含んだcatkin_ws/src/my_first_ros_pkgフォルダを作成
 
 2. 
 $ s catkin_ws/src/my_first_ros_pkg/CMakeLists.txt
-cmake_minimum_required(VERSION 3.0.2)
+
+cmake_minimum_required(VERSION 2.8.3)
 project(my_first_ros_pkg)
 find_package(catkin REQUIRED COMPONENTS roscpp std_msgs)
 catkin_package(INCLUDE_DIRS include
@@ -50,54 +49,29 @@ catkin_package(INCLUDE_DIRS include
   DEPENDS system_lib
 )
 include_directories( ${catkin_INCLUDE_DIRS})
-add_executable(hello_world_node src/hello_world_node.cpp) add_dependencies(hello_world_node
-my_first_ros_pkg_generate_messages_cpp) target_link_libraries(hello_world_node ${
-catkin_LIBRARIES})
+add_executable(hello_world_node src/hello_world_node.cpp)
+add_dependencies(hello_world_node my_first_ros_pkg_generate_messages_cpp)
+target_link_libraries(hello_world_node ${catkin_LIBRARIES}) 
 
 3.
-$ s catkin_ws/my_first_ros_pkg/src/hello_world_node.cpp
+$ s catkin_ws/src/my_first_ros_pkg/src/hello_world_node.cpp
 
-#include <ros/ros.h>
-#include <std_msgs/String.h>
-#include <sstream>
-int main(int argc, char **argv)
-{
-ros::init(argc, argv, "hello_world_node");
-ros::NodeHandle nh;
-ros::Publisher chatter_pub =
-nh.advertise<std_msgs::String>("say_hello_world", 1000);
-ros::Rate loop_rate(10);
-int count = 0;
-while (ros::ok())
-{
-std_msgs::String msg;
-std::stringstream ss;
-ss << "hello world " << count;
-msg.data = ss.str();
-ROS_INFO("%s", msg.data.c_str());
-chatter_pub.publish(msg);
-ros::spinOnce();
-loop_rate.sleep();
-++count;
-}
-return 0;
-}
-
-3. 
-catkinでビルド(xml, CMakeLists.txtを用いて), $ cd catkin_ws && catkin_make
-ワークスペース中のすべてのパッケージのビルド
- -> node(実行可能ファイル)生成
- エ ラ ー が な く ビ ル ド が 終 了 し た ら、「catkin_ws/devel/lib/my_first_ros_pkg」 に
+4. 
+catkinでビルド(xml, CMakeLists.txtを用いて)
+$ cd catkin_ws && catkin_make
+ワークスペース中のすべてのパッケージのビルド -> node(実行可能ファイル)生成
+エラーがなくビルドが終了したら、「catkin_ws/devel/lib/my_first_ros_pkg」 に
 「hello_world_node」という名前のファイルが生成されている。
 
-4.
+5.
 $ source devel/setup.zsh
 $ echo $ROS_PACKAGE_PATH
 /home/youruser/catkin_ws/src:/opt/ros/kinetic/share
-/home/youruser/catkin_ws/srcが追加されていることを確認
+source devel/setup.zshにより，パッケージのパスに/home/youruser/catkin_ws/srcが追加されていることを確認
 
+6.
 rosrunでpackageのnodeを実行
 $ roscore 
 別のターミナルで$ rosrun [package] [node]
-(2. 複数nodeを実行する場合, launchファイル使う $ roslaunch [package] [launch file])
 $ rosrun my_first_ros_pkg hello_world_node
+(複数nodeを実行する場合, launchファイル使う $ roslaunch [package] [launch file])

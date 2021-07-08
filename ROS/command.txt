@@ -31,12 +31,14 @@ $ mkdir -p catkin_ws/src
 $ cd catkin_ws/src
 $ catkin_init_workspace
 
+$ source /opt/ros/kinetic/setup.zsh
+
 
 1. 
 $ cd catkin_ws/src
 # catkin_create_pkg [パッケージ名] [依存するパッケージ1]…[依存するパッケージn]
 $ catkin_create_pkg my_first_ros_pkg std_msgs roscpp
-package.xmlとCMakeLists.txtを含んだcatkin_ws/src/my_first_ros_pkgフォルダを作成
+パッケージ名・依存するパッケージをもとに、package.xmlとCMakeLists.txtを含んだcatkin_ws/src/my_first_ros_pkgフォルダを作成
 
 2. 
 $ s catkin_ws/src/my_first_ros_pkg/CMakeLists.txt
@@ -74,4 +76,8 @@ rosrunでpackageのnodeを実行
 $ roscore 
 別のターミナルで$ rosrun [package] [node]
 $ rosrun my_first_ros_pkg hello_world_node
-(複数nodeを実行する場合, launchファイル使う $ roslaunch [package] [launch file])
+
+(複数nodeを同時に実行する場合, launchファイル使う
+$ mkdir launch && cd launch 
+$ s [launch file name].launch
+$ roslaunch [launch file])

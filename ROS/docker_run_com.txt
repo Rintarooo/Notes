@@ -1,0 +1,35 @@
+# # https://github.com/turlucode/ros-docker-gui
+# xhost local:root
+
+docker run --rm -it --runtime=nvidia --privileged --net=host --ipc=host -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=$DISPLAY -v $HOME/.Xauthority:/root/.Xauthority -e XAUTHORITY=/root/.Xauthority turlucode/ros-kinetic:cuda10-cudnn7-opencv3
+
+docker run --rm -it --runtime=nvidia --privileged --net=host --ipc=host -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=$DISPLAY -v $HOME/.Xauthority:/root/.Xauthority -e XAUTHORITY=/root/.Xauthority -v $HOME/coding/ros_beg:/root/catkin_ws turlucode/ros-kinetic:cuda10-cudnn7-opencv3
+
+# SUCCESS nvcc -V
+docker run --rm -it --runtime=nvidia --privileged --net=host --ipc=host -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=$DISPLAY -v $HOME/.Xauthority:/root/.Xauthority -e XAUTHORITY=/root/.Xauthority -v $HOME/coding/ros_beg:/root/ turlucode/ros-kinetic:cuda10-cudnn7-opencv3
+
+# SUCCESS nvcc -V
+docker run --rm -it --runtime=nvidia --privileged --net=host --ipc=host -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=$DISPLAY -v $HOME/.Xauthority:/root/.Xauthority -e XAUTHORITY=/root/.Xauthority -v $HOME/coding/ros_beg:/root/coding -w /root/coding/ turlucode/ros-kinetic:cuda10-cudnn7-opencv3
+
+### SUCCESS nvcc -V
+docker run --rm -it --runtime=nvidia --privileged --net=host --ipc=host -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=$DISPLAY -v $HOME/.Xauthority:/root/.Xauthority -e XAUTHORITY=/root/.Xauthority -v ${PWD}:/root/ turlucode/ros-kinetic:cuda10-cudnn7-opencv3
+
+# SUCCESS
+docker run --rm -it --runtime=nvidia --privileged --net=host --ipc=host -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=$DISPLAY -v $HOME/.Xauthority:/root/.Xauthority -e XAUTHORITY=/root/.Xauthority -v ${PWD}:/rintaro/ turlucode/ros-kinetic:cuda10-cudnn7-opencv3
+
+
+docker run --rm -it --runtime=nvidia --privileged --net=host --ipc=host -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=$DISPLAY -v $HOME/.Xauthority:/root/.Xauthority -e XAUTHORITY=/root/.Xauthority -v ${PWD}:/root/rintaro/ turlucode/ros-kinetic:cuda10-cudnn7-opencv3
+
+
+# USER
+docker run --rm -it --runtime=nvidia --privileged --net=host --ipc=host -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=$DISPLAY -v $HOME/.Xauthority:/home/$(id -un)/.Xauthority -e XAUTHORITY=/home/$(id -un)/.Xauthority -e DOCKER_USER_NAME=$(id -un) -e DOCKER_USER_ID=$(id -u) -e DOCKER_USER_GROUP_NAME=$(id -gn) -e DOCKER_USER_GROUP_ID=$(id -g) -e ROS_IP=127.0.0.1 -w /home/ -v ${PWD}:/home/docker turlucode/ros-kinetic:cuda10-cudnn7-opencv3
+
+docker run --rm -it --runtime=nvidia --privileged --net=host --ipc=host -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=$DISPLAY -v $HOME/.Xauthority:/home/$(id -un)/.Xauthority -e XAUTHORITY=/home/$(id -un)/.Xauthority -e DOCKER_USER_NAME=$(id -un) -e DOCKER_USER_ID=$(id -u) -e DOCKER_USER_GROUP_NAME=$(id -gn) -e DOCKER_USER_GROUP_ID=$(id -g) -e ROS_IP=127.0.0.1 turlucode/ros-kinetic:cuda10-cudnn7-opencv3
+
+docker run --rm -it --runtime=nvidia --privileged --net=host --ipc=host -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=$DISPLAY -v $HOME/.Xauthority:/home/$(id -un)/.Xauthority -e XAUTHORITY=/home/$(id -un)/.Xauthority -e DOCKER_USER_NAME=$(id -un) -e DOCKER_USER_ID=$(id -u) -e DOCKER_USER_GROUP_NAME=$(id -gn) -e DOCKER_USER_GROUP_ID=$(id -g) -e ROS_IP=127.0.0.1 -v ${PWD}:/home/$(id -un)/docker_rin turlucode/ros-kinetic:cuda10-cudnn7-opencv3
+
+
+docker run --rm -it --runtime=nvidia --privileged --net=host --ipc=host -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=$DISPLAY -v $HOME/.Xauthority:/home/$(id -un)/.Xauthority -e XAUTHORITY=/home/$(id -un)/.Xauthority -e DOCKER_USER_NAME=$(id -un) -e DOCKER_USER_ID=$(id -u) -e DOCKER_USER_GROUP_NAME=$(id -gn) -e DOCKER_USER_GROUP_ID=$(id -g) -e ROS_IP=127.0.0.1 -v $HOME/coding/:/home/$(id -un)/coding turlucode/ros-kinetic:cuda10-cudnn7-opencv3
+
+python add_pointclouds_to_bagfile.py rgbd_dataset_freiburg1_desk-2hz-with-pointclouds.bag pcl.bag
+

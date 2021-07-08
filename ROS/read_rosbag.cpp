@@ -2,6 +2,9 @@
 https://www.ybliu.com/2020/07/ros-how-to-read-and-show-image-from-bag.html
 http://docs.ros.org/diamondback/api/rosbag/html/c++/classrosbag_1_1MessageInstance.html
 */
+
+// catkin_create_pkg imcv cv_bridge roscpp image_transport sensor_msgs std_msgs opencv2
+
 #include <iostream>
 #include <ros/ros.h>
 #include <rosbag/bag.h>
@@ -15,6 +18,8 @@ http://docs.ros.org/diamondback/api/rosbag/html/c++/classrosbag_1_1MessageInstan
 #include <opencv2/core/core.hpp>
 // #include <opencv2/core/operations.hpp>
 #include <opencv2/highgui/highgui.hpp>
+
+#include <opencv2/imgproc/imgproc.hpp>
 
 
 

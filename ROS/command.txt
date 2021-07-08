@@ -16,6 +16,7 @@ $ rosbag play [hoge.bag] -l
 
 $ rostopic list
 $ rostopic list -v
+$ rqt_graph
 
 # rosrun [package] [node]
 # rosrun image_view image_view image:=[your desired topic for image stream]
@@ -93,6 +94,7 @@ catkinでビルド(xml, CMakeLists.txtを用いて), $ cd catkin_ws && catkin_ma
 $ source devel/setup.zsh
 $ echo $ROS_PACKAGE_PATH
 /home/youruser/catkin_ws/src:/opt/ros/kinetic/share
+/home/youruser/catkin_ws/srcが追加されていることを確認
 
 rosrunでpackageのnodeを実行
 $ roscore 

@@ -19,7 +19,8 @@ sourcetree is GUI version
 ```bash
 git init
 ```
-make the working directory git file. `.git` file means the file organize history and record the time<br><br>
+make the working directory git file. <br>
+`.git` file means the file organize history and record the time<br><br>
 
 ```bash
 git add . 
@@ -32,13 +33,21 @@ git add [ファイル名]
 add specific file<br>
 ワーキングツリーの変更をインデックスに反映<br><br>
 
-$git commit -m ‘コメント’
-インデックスの変更をローカルリポジトリに反映
-$git commit --amend -m ‘コメント’
-前回のコミットを消して，インデックスの変更をローカルリポジトリに反映
+```bash
+git commit -m [コメント]
+```
+インデックスの変更をローカルリポジトリに反映<br><br>
 
-$git remote add origin <URL copied from GitHub>
-リモート名をoriginに省略する
+```bash
+git commit --amend -m [コメント]
+```
+前回のコミットを消して，インデックスの変更をローカルリポジトリに反映<br><br>
+
+```bash
+git remote add origin [URL copied from GitHub]
+```
+リモート名をoriginに省略する<br><br>
+
 $git push <URL copied from GitHub> masters
 $git push origin masters
 ローカルリポジトリの変更をリモートリポジトリ（GitHub）に反映

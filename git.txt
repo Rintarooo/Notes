@@ -75,7 +75,9 @@ $git branch -d [hoge]
 ブランチhogeを消す
 
 $ git reset --hard 昔のコミットのハッシュ値
+$ git reset --hard ORIG_HEAD
 https://qiita.com/shuntaro_tamura/items/db1aef9cf9d78db50ffe
+
 
 強制プッシュ
 $git push -f origin masters

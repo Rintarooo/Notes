@@ -24,6 +24,7 @@ $ rostopic echo [topic]
 # roslaunch [package] [launch file] 
 $ roslaunch gazebo_ros empty_world.launch 
 
+$ rosmsg show
 
 0.(ワークスペースの作成，1度実行すれば今後は実行する必要がない)
 $ source /opt/ros/kinetic/setup.zsh

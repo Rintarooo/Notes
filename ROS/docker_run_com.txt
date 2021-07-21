@@ -1,7 +1,11 @@
-# # https://github.com/turlucode/ros-docker-gui
-# xhost local:root
-# echo "/usr/local/cuda/bin/nvcc -
-# echo export PATH='/usr/local/cuda/bin/:$PATH' >> ~/.zshrc && source ~/.zshrc && nvcc -V
+## https://github.com/turlucode/ros-docker-gui
+# cannot displayのとき$ xhost local:root
+# $ docker run ***
+# $ source catkin_ws/devel/setup.zsh
+# $ echo export PATH='/usr/local/cuda/bin:$PATH' >> ~/.zshrc && source ~/.zshrc && nvcc -V
+# Terminator command
+# 1. [Ctrl]+[Shift]+o,[Ctrl]+[Shift]+e, 画面縦（横）分割
+# 2. [Ctrl]+d, 消去
 
 
 docker run --rm -it --runtime=nvidia --privileged --net=host --ipc=host -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=$DISPLAY -v $HOME/.Xauthority:/root/.Xauthority -e XAUTHORITY=/root/.Xauthority turlucode/ros-kinetic:cuda10-cudnn7-opencv3
@@ -31,8 +35,10 @@ docker run --rm -it --runtime=nvidia --privileged --net=host --ipc=host -v /tmp/
 
 docker run --rm -it --runtime=nvidia --privileged --net=host --ipc=host -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=$DISPLAY -v $HOME/.Xauthority:/home/$(id -un)/.Xauthority -e XAUTHORITY=/home/$(id -un)/.Xauthority -e DOCKER_USER_NAME=$(id -un) -e DOCKER_USER_ID=$(id -u) -e DOCKER_USER_GROUP_NAME=$(id -gn) -e DOCKER_USER_GROUP_ID=$(id -g) -e ROS_IP=127.0.0.1 -v ${PWD}:/home/$(id -un)/docker_rin turlucode/ros-kinetic:cuda10-cudnn7-opencv3
 
-#2021/0709
+#2021/0709#best#nicest ever
 docker run --rm -it --runtime=nvidia --privileged --net=host --ipc=host -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=$DISPLAY -v $HOME/.Xauthority:/home/$(id -un)/.Xauthority -e XAUTHORITY=/home/$(id -un)/.Xauthority -e DOCKER_USER_NAME=$(id -un) -e DOCKER_USER_ID=$(id -u) -e DOCKER_USER_GROUP_NAME=$(id -gn) -e DOCKER_USER_GROUP_ID=$(id -g) -e ROS_IP=127.0.0.1 -v $HOME/coding/:/home/$(id -un)/coding turlucode/ros-kinetic:cuda10-cudnn7-opencv3
+
+docker run --rm -it --runtime=nvidia --privileged --net=host --ipc=host -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=$DISPLAY -v $HOME/.Xauthority:/home/$(id -un)/.Xauthority -e XAUTHORITY=/home/$(id -un)/.Xauthority -e DOCKER_USER_NAME=$(id -un) -e DOCKER_USER_ID=$(id -u) -e DOCKER_USER_GROUP_NAME=$(id -gn) -e DOCKER_USER_GROUP_ID=$(id -g) -e ROS_IP=127.0.0.1 -v $HOME/coding/:/home/$(id -un)/coding turlucode/ros-kinetic:cuda8-cudnn6-opencv3
 
 # non mount
 docker run --rm -it --runtime=nvidia --privileged --net=host --ipc=host -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=$DISPLAY -v $HOME/.Xauthority:/home/$(id -un)/.Xauthority -e XAUTHORITY=/home/$(id -un)/.Xauthority -e DOCKER_USER_NAME=$(id -un) -e DOCKER_USER_ID=$(id -u) -e DOCKER_USER_GROUP_NAME=$(id -gn) -e DOCKER_USER_GROUP_ID=$(id -g) -e ROS_IP=127.0.0.1 turlucode/ros-kinetic:cuda10-cudnn7-opencv3
@@ -47,3 +53,23 @@ turlucode/ros-kinetic:cuda10-cudnn7-opencv3
 
 python add_pointclouds_to_bagfile.py rgbd_dataset_freiburg1_desk-2hz-with-pointclouds.bag pcl.bag
 
+
+
+
+
+# FAIL
+docker run --rm -it --runtime=nvidia -v $HOME/coding/:/opt rin/cuda:10.1-cudnn7-ubuntu18.04-opencv4.4.0
+docker run --rm -it --runtime=nvidia -v $HOME/coding/:/opt rin/cuda:10.1-cudnn7-ubuntu18.04-opencv4.1.0
+
+
+# SUCCESS
+docker build -t rin/cuda:10.1-cudnn7-ubuntu18.04-opencv4.1.0-CC5.2 ./
+docker run --rm -it --runtime=nvidia -v $HOME/coding/:/opt rin/cuda:10.1-cudnn7-ubuntu18.04-opencv4.1.0-CC5.2
+
+## docker run --rm -it --runtime=nvidia -v $HOME/coding/:/opt rin/cuda:10.1-cudnn7-ubuntu18.04-opencv3.4.11-CC5.2
+
+
+# SUCCESS
+docker run --rm -it --runtime=nvidia -v $HOME/coding/:/opt rin/cuda:10.1-cudnn7-ubuntu18.04-opencv3.4.11-CC5.0
+
+$ docker images | head

@@ -52,7 +52,9 @@ Automatically remove the container when it exits
 mount 
 ホスト側のファイルをコンテナ内で使いたいときに使う
 ${PWD}はホスト側のカレントディレクトリの絶対パス（相対パスはダメ）
- 
+-v $HOME/coding/:/opt/coding
+docker run -it --rm -v $HOME/coding/:/opt/coding -w /opt/coding ros:kinetic-ros-base
+
 -w
 Working directory inside the container
 これ使わないとコンテナのルートディレクトリから始まる

@@ -62,7 +62,7 @@ x(1)→execute, w(2)→write, r(4)→read
 $ chmod 777 [何とか].sh
 $ chmod +x [何とか].sh
 
-$which [コマンド名]  
+$which [コマンド名]  
 [コマンド名]のフルパスを表示
 $ which python3
 python3のコマンドのフルパスを表示

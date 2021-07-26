@@ -1,11 +1,11 @@
 ## https://github.com/turlucode/ros-docker-gui
-# cannot display�ΤȤ�$ xhost local:root
+# cannot display¤Î¤È¤­$ xhost local:root
 # $ docker run ***
 # $ source catkin_ws/devel/setup.zsh
 # $ echo export PATH='/usr/local/cuda/bin:$PATH' >> ~/.zshrc && source ~/.zshrc && nvcc -V
 # Terminator command
-# 1. [Ctrl]+[Shift]+o,[Ctrl]+[Shift]+e, ����k���ᣩ�ָ�
-# 2. [Ctrl]+d, ��ȥ
+# 1. [Ctrl]+[Shift]+o,[Ctrl]+[Shift]+e, »­Ãæ¿k£¨ºá£©·Ö¸î
+# 2. [Ctrl]+d, ÏûÈ¥
 
 
 docker run --rm -it --runtime=nvidia --privileged --net=host --ipc=host -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=$DISPLAY -v $HOME/.Xauthority:/root/.Xauthority -e XAUTHORITY=/root/.Xauthority turlucode/ros-kinetic:cuda10-cudnn7-opencv3
@@ -59,7 +59,6 @@ python add_pointclouds_to_bagfile.py rgbd_dataset_freiburg1_desk-2hz-with-pointc
 
 # FAIL
 docker run --rm -it --runtime=nvidia -v $HOME/coding/:/opt rin/cuda:10.1-cudnn7-ubuntu18.04-opencv4.4.0
-docker run --rm -it --runtime=nvidia -v $HOME/coding/:/opt rin/cuda:10.1-cudnn7-ubuntu18.04-opencv4.1.0
 
 
 # SUCCESS
@@ -71,5 +70,8 @@ docker run --rm -it --runtime=nvidia -v $HOME/coding/:/opt rin/cuda:10.1-cudnn7-
 
 # SUCCESS
 docker run --rm -it --runtime=nvidia -v $HOME/coding/:/opt rin/cuda:10.1-cudnn7-ubuntu18.04-opencv3.4.11-CC5.0
+
+docker run --rm -it --runtime=nvidia --cap-add=SYS_PTRACE --security-opt="seccomp=unconfined" -v $HOME/coding/:/opt rin/cuda:10.1-cudnn7-ubuntu18.04-opencv3.4.11-CC5.0-gdb
+
 
 $ docker images | head

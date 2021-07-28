@@ -32,9 +32,19 @@ b(=break)ブレイクポイントを貼る．main.cppの関数の先頭
 ```
 <br>
 
-ブレイクポイントの情報
+i b(=info break)ブレイクポイントの情報
 ```bash
-(gdb) info break
+(gdb) i b
+```
+<br>
+```bash
+Num     Type           Disp Enb Address            What
+3       breakpoint     keep y   0x00005555555668e7 in main(int, char 
+```
+
+Numが３のbreakpointを削除
+```bash
+(gdb) d 3
 ```
 <br>
 
@@ -44,9 +54,15 @@ c(=continue). 次のブレイクポイントまで
 ```
 <br>
 
-プログラムの表示
+l(=list)プログラムの表示, 10行
 ```bash
-(gdb) list
+(gdb) l
+```
+<br>
+
+whe(=where)現在の停止位置
+```bash
+(gdb) whe
 ```
 <br>
 
@@ -91,13 +107,44 @@ affineConvertOnCuda.cuの73行目にブレイクポイント
 ```
 <br>
 
-現在の全スレッドを確認する
+i(=info)現在の全スレッドを確認する
 ```bash
-(cuda-gdb) info cuda threads
+(cuda-gdb) i cuda threads
 ```
 <br>
 
+i(=info)GPU情報
 ```bash
-(cuda-gdb) print 変数名
+(cuda-gdb) i cuda devices
 ```
 <br>
+
+p(=print)
+```bash
+(cuda-gdb) p 変数名
+```
+```bash
+(cuda-gdb) p &変数名
+```
+```bash
+(cuda-gdb) p costvolume.K_gpu_inv
+```
+<br>
+
+i lo(= info locals)現在の関数内の局所変数の名前と値を全て表示する。
+```bash
+(cuda-gdb) i lo
+```
+<br>
+
+To obtain the current focus, https://on-demand.gputechconf.com/gtc/2014/presentations/S4578-cuda-debugging-command-line-tools.pdf
+```bash
+(cuda-gdb) cuda thread
+```
+thread (0,10,0)
+<br>
+
+```bash
+(cuda-gdb) cuda kernel block thread
+```
+kernel 0, block (37,29,0), thread (0,10,0

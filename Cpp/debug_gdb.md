@@ -36,7 +36,7 @@ b(=break)：ブレイクポイントを貼る．main.cppの72行目
 ```
 <br>
 
-i b(=info break)ブレイクポイントの情報
+i b(=info break)貼ったブレイクポイントの情報
 ```bash
 (gdb) i b
 ```
@@ -57,6 +57,21 @@ c(=continue)：次のブレイクポイントまで進む
 (gdb) c
 ```
 <br>
+
+
+n(=next)：停止しているプログラムの次の1行を実行する。stepとの違いは関数呼び出しを1行として扱う点である。
+```bash
+(gdb) n
+```
+<br>
+
+
+s(=step)：停止しているプログラムの次の1行を実行する。 nextとの違いは呼び出された関数の行も1行として扱う点である。
+```bash
+(gdb) s
+```
+<br>
+
 
 l(=list)：プログラムの表示, 10行
 ```bash
@@ -122,7 +137,6 @@ cuda-gdb 実行ファイル名
 ```bash
 (cuda-gdb) b カーネル関数名
 ```
-<br>
 
 affineConvertOnCuda.cuの73行目にブレイクポイント
 ```bash
@@ -152,14 +166,18 @@ i lo(= info locals)現在の関数内の局所変数の名前と値を全て表�
 ```bash
 (cuda-gdb) cuda thread
 ```
-thread (0,10,0)
+`thread (0,10,0)`
 <br>
 
-cuda-gdbで動かすthreadを(0,5,0)に変更
+```bash
+p threadIdx
+```
+<br>
+
+cuda-gdbで動かすthreadを`thread (0,10,0)`から`(0,5,0)`に変更
 ```bash
 (cuda-gdb) cuda thread 0,5,0
 ```
-thread (0,10,0)
 <br>
 
 ```bash

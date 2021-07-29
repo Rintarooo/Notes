@@ -1,10 +1,20 @@
+[command]+[alt]+[o]：preview md  
+
+「OmniMarkupPreviewer」というsublime textのプラグイン
+
 # how to use gdb for debugging
-https://uguisu.skr.jp/Windows/gdb.html
+参考
+
+* https://uguisu.skr.jp/Windows/gdb.html
+<br>
+<br>
+<br>
+<br>
 
 ## gdb
-実行ファイルをビルドして作成．-gオプションは，gdb使うために，デバッグ情報を付与．
+ビルドして実行ファイルを生成．-gオプションは，gdb使うために，デバッグ情報を付与．-g3の3は，デバッグレベル．-O0オプションは，最適化をレベル０にして無効（[最適化をするとソースコードに書かれている処理の順番とコンパイル後の処理の順番が変わることがあってデバッグするのむずいから](https://www.clear-code.com/blog/2013/5/8.html)）．
 ```bash
-g++ -std=c++11 -g3 ソースコード名
+g++ -std=c++11 -g3 -O0 ソースコード名
 ```
 <br>
 
@@ -14,19 +24,13 @@ gdb 実行ファイル名
 ```
 <br>
 
-r(=run)：プログラムを走らせる．引数がいるなら，引数もつける
-```bash
-(gdb) r　引数
-```
-<br>
-
 b(=break)：ブレイクポイントを貼る．main.cppの72行目
 ```bash
 (gdb) b main.cpp:72
 ```
 <br>
 
-b(=break)ブレイクポイントを貼る．main.cppの関数の先頭
+ブレイクポイントを貼る．main.cppの関数の先頭
 ```bash
 (gdb) b main.cpp:関数名
 ```
@@ -36,55 +40,74 @@ i b(=info break)ブレイクポイントの情報
 ```bash
 (gdb) i b
 ```
-<br>
 ```bash
 Num     Type           Disp Enb Address            What
-3       breakpoint     keep y   0x00005555555668e7 in main(int, char 
-```
-
-Numが３のbreakpointを削除
-```bash
-(gdb) d 3
+3       breakpoint     keep y   0x00005555555668e7 in main(int, char なんとか
 ```
 <br>
 
-c(=continue). 次のブレイクポイントまで
+r(=run)：プログラムを走らせる．引数がいるなら，引数もつける
+```bash
+(gdb) r　引数
+```
+<br>
+
+c(=continue)：次のブレイクポイントまで進む
 ```bash
 (gdb) c
 ```
 <br>
 
-l(=list)プログラムの表示, 10行
+l(=list)：プログラムの表示, 10行
 ```bash
 (gdb) l
 ```
 <br>
 
-whe(=where)現在の停止位置
+whe(=where)：現在の停止位置
 ```bash
 (gdb) whe
 ```
 <br>
 
-d(=delete)ブレイクポイントを消す
+p(=print)
 ```bash
-(gdb) d main.cpp:72
+(cuda-gdb) p 変数名
+```
+```bash
+(cuda-gdb) p &変数名
+```
+```bash
+(cuda-gdb) p costvolume.K_gpu_inv
 ```
 <br>
 
-d(=delete)ブレイクポイントを消す
+d(=delete)：`(gdb) i b`の出力の左端の，Numが３のブレイクポイントを削除
 ```bash
-(gdb) delete
+(gdb) d 3
 ```
 <br>
+
+すべてのブレイクポイントを削除
+```bash
+(gdb) d
+```
+<br>
+
+<br>
+<br>
+<br>
+<br>
+
 
 ## cuda-gdb
-create exec file
-```bash
-g++ -std=c++11 -g3 -G ソースコード名
-```
+cuda-gdbはgdbの拡張版．
+https://i.riken.jp/wp-content/uploads/2015/06/secure_4467_cuda-programming_main.pdf
+の106ページ目
+<br>
 <br>
 
+cuda-gdbを起動
 ```bash
 cuda-gdb 実行ファイル名
 ```
@@ -119,27 +142,22 @@ i(=info)GPU情報
 ```
 <br>
 
-p(=print)
-```bash
-(cuda-gdb) p 変数名
-```
-```bash
-(cuda-gdb) p &変数名
-```
-```bash
-(cuda-gdb) p costvolume.K_gpu_inv
-```
-<br>
-
 i lo(= info locals)現在の関数内の局所変数の名前と値を全て表示する。
 ```bash
 (cuda-gdb) i lo
 ```
 <br>
 
-To obtain the current focus, https://on-demand.gputechconf.com/gtc/2014/presentations/S4578-cuda-debugging-command-line-tools.pdf
+[To obtain the current focus](https://on-demand.gputechconf.com/gtc/2014/presentations/S4578-cuda-debugging-command-line-tools.pdf)
 ```bash
 (cuda-gdb) cuda thread
+```
+thread (0,10,0)
+<br>
+
+cuda-gdbで動かすthreadを(0,5,0)に変更
+```bash
+(cuda-gdb) cuda thread 0,5,0
 ```
 thread (0,10,0)
 <br>
@@ -147,4 +165,4 @@ thread (0,10,0)
 ```bash
 (cuda-gdb) cuda kernel block thread
 ```
-kernel 0, block (37,29,0), thread (0,10,0
+kernel 0, block (37,29,0), thread (0,10,0)

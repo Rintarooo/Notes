@@ -102,8 +102,25 @@ $git checkout [hoge]
 $git branch -d [hoge]
 ブランチhogeを消す
 
-$ git reset --hard 昔のコミットのハッシュ値
-https://qiita.com/shuntaro_tamura/items/db1aef9cf9d78db50ffe
+```bash
+git reset --hard 昔のコミットのハッシュ値
+```
+昔のコミットした時の状態に戻す．https://qiita.com/shuntaro_tamura/items/db1aef9cf9d78db50ffe
+<br>
+
+```bash
+git reflog
+```
+https://www.r-staffing.co.jp/engineer/entry/20191227_1
+<br>
+
+```bash
+git reset --hard HEAD@{1}
+```
+最新の状態に戻す
+<br>
+
+
 
 強制プッシュ
 $git push -f origin masters

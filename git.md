@@ -5,78 +5,106 @@ preview md
 sourcetree is GUI version
 
 
-## flow
+## 流れ
 
-1. __add__(working tree→index(=stage))
+1. __add__：working tree→index(=stage)
 
-2. __commit__(index→local repository)
+2. __commit__：index→local repository
 
-3. __push__(local repository into remote repository(GitHub))<br><br>
+3. __push__：local repository→remote repository(GitHub))<br><br>
 
 
 ## Git command
-
+<br>
 ```bash
+# カレントディレクトリをgitで管理し始める. 
 git init
+# 隠しファイルの`.git`が生成される．
 ```
-make the working directory git file. <br>
-`.git` file means the file organize history and record the time<br><br>
+<br><br><br>
 
 ```bash
+# ワーキングツリーの変更をインデックスに反映
 git add . 
-```
-add all files in the working directory into index<br><br>
-
-```bash
 git add [ファイル名]
+# `git add [ファイル名]` は単一のファイルのみ, `git add .` は全てのファイル
 ```
-add specific file<br>
-ワーキングツリーの変更をインデックスに反映<br><br>
+<br><br><br>
 
+インデックスの変更をローカルリポジトリに反映
 ```bash
 git commit -m [コメント]
 ```
-インデックスの変更をローカルリポジトリに反映<br><br>
-
+<br>
+前回のコミットを消して，インデックスの変更をローカルリポジトリに反映
 ```bash
 git commit --amend -m [コメント]
 ```
-前回のコミットを消して，インデックスの変更をローカルリポジトリに反映<br><br>
+<br><br>
 
+リモート名をoriginに省略する
 ```bash
 git remote add origin [URL copied from GitHub]
 ```
-リモート名をoriginに省略する<br><br>
+<br><br>
 
-$git push <URL copied from GitHub> masters
-$git push origin masters
 ローカルリポジトリの変更をリモートリポジトリ（GitHub）に反映
-
-もしfatal: remote origin already exists.のエラー出たら
-$git remote rm origin
-$vim .git/configで登録されたかチェック
-$git remote -v
-
-
+```bash
+git push origin masters
+git push [URL] masters
+```
+<br><br>
 
 
+もし`fatal: remote origin already exists.`のエラー出たら
+```bash
+git remote rm origin
+```
+<br>
+`vim .git/config`で登録されたかチェック
+`git remote -v`でリモートブランチ名表示して，originであることを確認
+
+<br><br>
 
 
-$git status
-print working tree status
-$git diff 
-print the difference between working tree and index(stage)
-$git diff —cached
-$git diff HEAD
 
-$git log | head — 過去のコミットのハッシュ値を確認
-$git log -2 — 過去の2件のコミットのハッシュ値を確認
-$git log -p 修正内容・差分表示
-$git clone <URL fetched from GitHub> 
-GitHub上のリポジトリをローカルに落とす
 
-ブランチ=履歴の先頭コミット
+
+```bash
+# print working tree status
+git status
+```
+<br><br>
+
+```bash
+# ワークツリーとインデックスの差分
+git diff 
+
+# インデックスとHEAD（現在ブランチの最新コミット）との差分
+git diff —-cached
+
+# ワークツリーとHEAD（現在ブランチの最新コミット）との差分
+git diff HEAD
+
+```
+HEAD＾，HEAD〜はHEADから一つ前のコミットという意味<br>
+ブランチ=履歴の先頭コミット<br>
 HEAD=最新のコミットのハッシュ値のエイリアス
+<br>
+
+```bash
+#  — 過去のコミットのハッシュ値を確認
+git log | head
+
+# 過去の2件のコミットのハッシュ値を確認
+git log -2
+
+# 修正内容・差分表示
+git log -p
+
+# GitHub上のリポジトリをローカルに落とす
+git clone <URL fetched from GitHub> 
+```
 
 $git pull origin master --allow-unrelated-histories
 pull = fetch + merge
@@ -84,8 +112,8 @@ fetch: リモート追跡ブランチ(上流ブランチ(リモート)の内容�
 
 $git branch
 デフォルトのローカルブランチ名表示
-→master
-*が現在作業しているブランチ
+→master<br>
+＊があるブランチが現在作業しているブランチ
 
 $git branch -r
 リモート追跡ブランチ名(リモート名/ブランチ名)表示

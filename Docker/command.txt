@@ -59,6 +59,9 @@ docker run -it --rm -v $HOME/coding/:/opt/coding -w /opt/coding ros:kinetic-ros-
 Working directory inside the container
 これ使わないとコンテナのルートディレクトリから始まる
 
+-e
+環境変数を設定
+
 --name
 コンテナの名前つける
 

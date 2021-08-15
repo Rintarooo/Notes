@@ -31,8 +31,8 @@ git add [ファイル名]
 ```
 <br><br><br>
 
-インデックスの変更をローカルリポジトリに反映
 ```bash
+# インデックスの変更をローカルリポジトリに反映
 git commit -m [コメント]
 ```
 <br>
@@ -42,7 +42,7 @@ git commit --amend -m [コメント]
 ```
 <br><br>
 
-リモート名をoriginに省略する
+リモートリポジトリ（GitHub上のリポジトリ）のパス（URL）をoriginに省略する
 ```bash
 git remote add origin [URL copied from GitHub]
 ```
@@ -70,13 +70,11 @@ git remote rm origin
 
 
 
+### 表示
 ```bash
 # print working tree status
 git status
-```
-<br><br>
 
-```bash
 # ワークツリーとインデックスの差分
 git diff 
 
@@ -106,33 +104,68 @@ git log -p
 git clone <URL fetched from GitHub> 
 ```
 
-$git pull origin master --allow-unrelated-histories
-pull = fetch + merge
-fetch: リモート追跡ブランチ(上流ブランチ(リモート)の内容を取り込むために，自動的に作られる)
+```bash
+git pull origin master --allow-unrelated-histories
+# pull = fetch + merge
+# fetch: リモート追跡ブランチ(上流ブランチ(リモート)の内容を取り込むために，自動的に作られる)
+```
+### branch
+```bash
+# ローカルブランチ名表示; デフォルトのローカルブランチ名:master
+git branch
+# ＊　がついてるブランチが現在作業しているブランチ
 
-$git branch
-デフォルトのローカルブランチ名表示
-→master<br>
-＊があるブランチが現在作業しているブランチ
+# リモートブランチ名表示; デフォルトのリモートブランチ名:origin
+git remote -v
 
-$git branch -r
-リモート追跡ブランチ名(リモート名/ブランチ名)表示
-→origin/master
+# リモート追跡ブランチ名(リモート名/ブランチ名)表示; デフォルトのリモート追跡ブランチ名(リモート名/ブランチ名):origin/master
+git branch -r
 
-$git remote -v
-リモートブランチ名表示
-→origin
+# masterから枝分かれしたブランチhogeを作る（masterブランチを切る）
+git branch [hoge]
 
-$git branch [hoge]
-枝分かれしたブランチhogeを作る（masterブランチを切る）
-$git checkout [hoge]
-作業するブランチmaster→hogeに変える
-$git branch -d [hoge]
-ブランチhogeを消す
+# 作業するブランチmaster→hogeに変える
+git checkout [hoge]
+
+# git branch [hoge] && git checkout [hoge] 
+git checkout -b [hoge]
+
+# ＊hogeで,現在作業しているブランチを確認
+git branch
+
+
+# ~~~
+# hoge上で，何かしらコミットする
+# ~~~
+
+# リモートリポジトリ（GitHub）のhogeブランチに反映
+git push origin [hoge]
+
+# 作業するブランチhoge→masterに変える
+git checkout master
+
+# ＊masterで,現在作業しているブランチを確認
+git branch
+
+# masterにhogeのコミットした差分を取り込む
+git merge [hoge]
+
+# ブランチhogeを消す
+git branch -d [hoge]
+# -d オプションは，一回はコミットされたブランチを削除
+# -D　オプションは，過去にコミットがないブランチを削除
+```
+
+```bash
+# リモートリポジトリ（GitHub）のhogeブランチを削除
+git push --delete origin [hoge]
+
+```
 
 ```bash
 git reset --hard 昔のコミットのハッシュ値
 ```
+
 昔のコミットした時の状態に戻す．https://qiita.com/shuntaro_tamura/items/db1aef9cf9d78db50ffe
 <br>
 
@@ -150,5 +183,7 @@ git reset --hard HEAD@{1}
 
 
 
-強制プッシュ
-$git push -f origin masters
+```bash
+# 強制プッシュ
+git push -f origin masters
+```

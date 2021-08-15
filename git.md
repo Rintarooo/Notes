@@ -115,6 +115,11 @@ git pull origin master --allow-unrelated-histories
 git branch
 # ＊　がついてるブランチが現在作業しているブランチ
 
+# ローカル+リモートブランチ名表示; 
+git branch -a
+# "-a" is -all
+# "remotes"はリモート追跡ブランチのこと
+
 # リモートブランチ名表示; デフォルトのリモートブランチ名:origin
 git remote -v
 

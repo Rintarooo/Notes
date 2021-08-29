@@ -16,6 +16,7 @@ sourcetree is GUI version
 
 ## Git command
 <br>
+
 ```bash
 # カレントディレクトリをgitで管理し始める. 
 git init

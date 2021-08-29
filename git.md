@@ -15,14 +15,15 @@ sourcetree is GUI version
 
 
 ## Git command
-<br>
+
+### 基本操作
 
 ```bash
 # カレントディレクトリをgitで管理し始める. 
 git init
 # 隠しファイルの`.git`が生成される．
 ```
-<br><br><br>
+<br><br>
 
 ```bash
 # ワーキングツリーの変更をインデックスに反映
@@ -30,29 +31,30 @@ git add .
 git add [ファイル名]
 # `git add [ファイル名]` は単一のファイルのみ, `git add .` は全てのファイル
 ```
-<br><br><br>
+<br><br>
 
 ```bash
 # インデックスの変更をローカルリポジトリに反映
 git commit -m [コメント]
 ```
-<br>
-前回のコミットを消して，インデックスの変更をローカルリポジトリに反映
+
+
 ```bash
+# 前回のコミットを消して，インデックスの変更をローカルリポジトリに反映
 git commit --amend -m [コメント]
 ```
 <br><br>
 
-リモートリポジトリ（GitHub上のリポジトリ）のパス（URL）をoriginに省略する
 ```bash
+# リモートリポジトリ（GitHub上のリポジトリ）のパス（URL）をoriginに省略する
 git remote add origin [URL copied from GitHub]
 ```
 <br><br>
 
-ローカルリポジトリの変更をリモートリポジトリ（GitHub）に反映
 ```bash
+# ローカルリポジトリの変更をリモートリポジトリ（GitHub）に反映
 git push origin masters
-git push [URL] masters
+# git push [URL] masters
 ```
 <br><br>
 
@@ -63,7 +65,8 @@ git remote rm origin
 ```
 <br>
 `vim .git/config`で登録されたかチェック
-`git remote -v`でリモートブランチ名表示して，originであることを確認
+
+`git remote -v`でリモートブランチ名を表示して，originであることを確認
 
 <br><br>
 

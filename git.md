@@ -26,7 +26,7 @@ git init
 <br><br>
 
 ```bash
-# ワーキングツリーの変更をインデックスに反映
+# ワーキングツリーの差分（＝変更）をインデックスに反映
 git add . 
 git add [ファイル名]
 # `git add [ファイル名]` は単一のファイルのみ, `git add .` は全てのファイル
@@ -34,13 +34,13 @@ git add [ファイル名]
 <br><br>
 
 ```bash
-# インデックスの変更をローカルリポジトリに反映
+# インデックスの差分をローカルリポジトリに反映
 git commit -m [コメント]
 ```
 
 
 ```bash
-# 前回のコミットを消して，インデックスの変更をローカルリポジトリに反映
+# 前回のコミットを消して，インデックスの差分をローカルリポジトリに反映
 git commit --amend -m [コメント]
 ```
 <br><br>
@@ -52,9 +52,9 @@ git remote add origin [URL copied from GitHub]
 <br><br>
 
 ```bash
-# ローカルリポジトリの変更をリモートリポジトリ（GitHub）に反映
+# ローカルリポジトリの差分をリモートリポジトリ（GitHub）に反映
 git push origin masters
-# git push [URL] masters
+# git push [リモートリポジトリのURL] [差分をリモートリポジトリに反映させたい，ローカルリポジトリにおけるブランチ]
 ```
 <br><br>
 

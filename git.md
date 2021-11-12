@@ -52,8 +52,8 @@ git remote add origin [URL copied from GitHub]
 <br><br>
 
 ```bash
-# ローカルリポジトリの差分をリモートリポジトリ（GitHub）に反映
-git push origin masters
+# masterブランチにおけるローカルリポジトリの差分をリモートリポジトリ（GitHub）(ここでは、originに省略)に反映
+git push origin master
 # git push [リモートリポジトリのURL] [差分をリモートリポジトリに反映させたい，ローカルリポジトリにおけるブランチ]
 ```
 <br><br>
@@ -91,7 +91,7 @@ git diff HEAD
 ```
 HEAD＾，HEAD〜はHEADから一つ前のコミットという意味<br>
 ブランチ=履歴の先頭コミット<br>
-HEAD=最新のコミットのハッシュ値のエイリアス
+HEAD=最新のコミットのハッシュ値の別名（エイリアス）
 <br>
 
 ```bash
@@ -101,8 +101,11 @@ git log | head
 # 過去の2件のコミットのハッシュ値を確認
 git log -2
 
-# 修正内容・差分表示
-git log -p
+# 過去の2件のコミットの修正内容・差分表示
+git log -2 -p
+
+# <過去のコミットのハッシュ値>の修正内容・差分表示
+git show <過去のコミットのハッシュ値>
 
 # GitHub上のリポジトリをローカルに落とす
 git clone <URL fetched from GitHub> 
@@ -172,10 +175,14 @@ git push --delete origin [hoge]
 ```
 
 ```bash
-git reset --hard 昔のコミットのハッシュ値
+# リモートリポジトリ（GitHub）のコミットの履歴から、昔のコミットのハッシュ値以降のコミットを削除
+git push -f origin <昔のコミットのハッシュ値>:<対象ブランチ名>
+
+# ローカルリポジトリを、昔のコミットした時の状態に戻す．
+git reset --hard <昔のコミットのハッシュ値>
 ```
 
-昔のコミットした時の状態に戻す．https://qiita.com/shuntaro_tamura/items/db1aef9cf9d78db50ffe
+https://qiita.com/shuntaro_tamura/items/db1aef9cf9d78db50ffe
 <br>
 
 ```bash

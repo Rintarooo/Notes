@@ -12,7 +12,7 @@
 
 # sudo systemctl restart docker
 
-docker run --rm --gpus all nvidia/cuda:11.0-base nvidia-smi
+# docker run --rm --gpus all nvidia/cuda:11.0-base nvidia-smi
 
 # this command pull 4.6GB image
 # docker run --gpus all -it --rm --name tensorflow-gpu -p 8888:8888 tensorflow/tensorflow:latest-gpu-py3-jupyter

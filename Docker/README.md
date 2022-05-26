@@ -1,3 +1,5 @@
+<!-- Ctrl+Alt+O, omni, readme viewer -->
+
 # Install Docker on Ubuntu
 
 * install Docker 20.10.3 on Ubuntu 18.04.5

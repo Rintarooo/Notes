@@ -92,16 +92,19 @@ docker run -it --rm -v $HOME/coding/:/opt/coding -w /opt/coding ros:kinetic-ros-
 # コンテナから抜けたとき，自動的にimage削除
 
 -v ${PWD}:[コンテナ内のパス]
+--volume
 # mount 
 # ホスト側のファイルをコンテナ内で使いたいときに使う
 # ${PWD}はホスト側のカレントディレクトリの絶対パス（相対パスはダメ）
 # -v $HOME/coding/:/opt/coding
 
 -w
+--workdir
 # Working directory inside the container
 # これ使わないとコンテナのルートディレクトリから始まる
 
 -e
+--env
 # 環境変数を設定
 
 --name

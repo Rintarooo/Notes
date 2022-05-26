@@ -2,7 +2,7 @@
 
 ## 流れ
 
-1. __pull__ or __build__：DockerHubからimageをローカルにpullするか, buildしてローカルにimageを生成するか
+1. __pull__ or __build__：DockerHubからimageをローカルにpullするか, Dockerfileをbuildしてローカルにimageを生成するか
 2. __run__：imageからコンテナを立ち上げる
 3. __rm__　or __rmi__：imageやコンテナを削除<br><br>
 

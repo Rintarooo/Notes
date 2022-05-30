@@ -11,7 +11,7 @@ sourcetree is GUI version
 
 2. __commit__：index→local repository
 
-3. __push__：local repository→remote repository(GitHub))<br><br>
+3. __push__：local repository→remote repository(=GitHub)<br><br>
 
 
 ## Git command
@@ -19,17 +19,19 @@ sourcetree is GUI version
 ### 基本操作
 
 ```bash
-# カレントディレクトリをgitで管理し始める. 
+# カレントディレクトリをgitでバージョン管理し始める. 
 git init
-# 隠しファイルの`.git`が生成される．
+# カレントディレクトリに隠しディレクトリの`.git/`が生成される．
+# この.gitディレクトリが、Gitのリポジトリの実体．リポジトリとは，Gitがファイルの履歴を保存している場所のこと．ローカルの環境にあるので，ローカリリポジトリになる．
 ```
 <br><br>
 
 ```bash
 # ワーキングツリーの差分（＝変更）をインデックスに反映
-git add . 
 git add [ファイル名]
-# `git add [ファイル名]` は単一のファイルのみ, `git add .` は全てのファイル
+# `git add [ファイル名]` は単一のファイルのみ
+git add . 
+# `git add .`と`git add -A` は全てのファイル
 ```
 <br><br>
 
@@ -46,8 +48,9 @@ git commit --amend -m [コメント]
 <br><br>
 
 ```bash
-# リモートリポジトリ（GitHub上のリポジトリ）のパス（URL）をoriginに省略する
+# リモートリポジトリ上（GitHub上）のリポジトリのパス（URL）をoriginに省略する
 git remote add origin [URL copied from GitHub]
+# 例：git remote add origin　https://github.com/Rintarooo/Notes.git
 ```
 <br><br>
 
@@ -108,13 +111,22 @@ git log -2 -p
 git show <過去のコミットのハッシュ値>
 
 # GitHub上のリポジトリをローカルに落とす
-git clone <URL fetched from GitHub> 
+git clone <URL copied from GitHub> 
 ```
 
+### リモートの差分をローカルに取り込む．
 ```bash
-git pull origin master --allow-unrelated-histories
+git pull origin master
 # pull = fetch + merge
-# fetch: リモート追跡ブランチ(上流ブランチ(リモート)の内容を取り込むために，自動的に作られる)
+
+git fetch origin
+# リモート追跡ブランチ(origin/master)がリモートリポジトリ(origin)の内容を取り込む．リモート追跡ブランチは自動的に作られる．
+
+git merge origin/master
+# ローカルの上流ブランチ（origin/master）をローカルのmasterブランチにマージする．
+# https://qiita.com/uasi/items/69368c17c79e99aaddbf
+
+git pull origin master --allow-unrelated-histories
 ```
 ### branch
 ```bash

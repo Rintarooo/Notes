@@ -206,26 +206,27 @@ git push -f origin <過去のコミットのハッシュ値>:<対象ブランチ
 
 # ローカルリポジトリを、過去のコミットした時の状態に戻す．
 git reset --hard <過去のコミットのハッシュ値>
+# --hardオプションは，ワーキングツリー・インデックス（ステージ）・ローカルリポジトリの全てを戻す
 # https://qiita.com/shuntaro_tamura/items/db1aef9cf9d78db50ffe
 ```
 
-<br>
+<br><br>
 
+### 間違った操作をした場合
 ```bash
+# 操作履歴を確認
 git reflog
 # https://www.r-staffing.co.jp/engineer/entry/20191227_1
-```
-<br>
 
-```bash
+# 間違った操作の前のHEAD@{数字}の状態に戻す
 git reset --hard HEAD@{1}
 ```
-最新の状態に戻す
-<br>
+<br><br>
 
 
 
 ```bash
 # 強制プッシュ
+リモートリポジトリのコミットを削除するので，削除されたコミットは，復元不可．要注意
 git push -f origin masters
 ```

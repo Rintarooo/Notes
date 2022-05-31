@@ -67,7 +67,7 @@ git push origin master
 git remote rm origin
 ```
 <br>
-`vim .git/config`で登録されたかチェック
+`cat .git/config`で登録されたかチェック
 
 `git remote -v`でリモートブランチ名を表示して，originであることを確認
 
@@ -113,34 +113,38 @@ git show <過去のコミットのハッシュ値>
 # GitHub上のリポジトリをローカルに落とす
 git clone <URL copied from GitHub> 
 ```
+<br><br>
 
 ### リモートの差分をローカルに取り込む．
 ```bash
 git pull origin master
+# リモートリポジトリ(origin)の差分をfetchして，ローカルのmasterブランチにmergeする．
 # pull = fetch + merge
 
 git fetch origin
-# リモート追跡ブランチ(origin/master)がリモートリポジトリ(origin)の内容を取り込む．リモート追跡ブランチは自動的に作られる．
+# リモート追跡ブランチ(origin/master)がリモートリポジトリ(origin)の内容を取り込む(fetchする)．リモート追跡ブランチは自動的に作られる．
 
 git merge origin/master
-# ローカルの上流ブランチ（origin/master）をローカルのmasterブランチにマージする．
+# ローカルの上流ブランチ（origin/master）をローカルのmasterブランチにmergeする．
 # https://qiita.com/uasi/items/69368c17c79e99aaddbf
 
 git pull origin master --allow-unrelated-histories
 ```
+<br><br>
+
 ### branch
 ```bash
 # ローカルブランチ名表示; デフォルトのローカルブランチ名:master
 git branch
 # ＊　がついてるブランチが現在作業しているブランチ
 
+# リモートブランチ名表示; デフォルトのリモートブランチ名:origin
+git remote -v
+
 # ローカル+リモートブランチ名表示; 
 git branch -a
 # "-a" is -all
 # "remotes"はリモート追跡ブランチのこと
-
-# リモートブランチ名表示; デフォルトのリモートブランチ名:origin
-git remote -v
 
 # リモート追跡ブランチ名(リモート名/ブランチ名)表示; デフォルトのリモート追跡ブランチ名(リモート名/ブランチ名):origin/master
 git branch -r
@@ -159,7 +163,7 @@ git branch
 
 
 # ~~~
-# hoge上で，何かしらコミットする
+# ローカルのhoge上で，何かしらコミットする
 # ~~~
 
 # リモートリポジトリ（GitHub）のhogeブランチに反映
@@ -178,29 +182,39 @@ git merge [hoge]
 git branch -d [hoge]
 # -d オプションは，一回はコミットされたブランチを削除
 # -D　オプションは，過去にコミットがないブランチを削除
-```
 
-```bash
 # リモートリポジトリ（GitHub）のhogeブランチを削除
 git push --delete origin [hoge]
-
 ```
+<br><br>
 
+
+###  元の状態に戻す
 ```bash
-# リモートリポジトリ（GitHub）のコミットの履歴から、昔のコミットのハッシュ値以降のコミットを削除
-git push -f origin <昔のコミットのハッシュ値>:<対象ブランチ名>
+# git checkout の機能
+# 1. 作業ブランチを切り替える
+# 2. 指定したコミットの状態を、インデックスと作業ツリーに展開する
+# 分かりやすいURL→https://www-creators.com/archives/1290
+# ワーキングツリーを，インデックス（ステージ）の状態に戻す
+git checkout .
 
-# ローカルリポジトリを、昔のコミットした時の状態に戻す．
-git reset --hard <昔のコミットのハッシュ値>
+#  ワーキングツリーとインデックス（ステージ）を，HEADが指すコミットの状態に戻す
+git checkout HEAD .
+
+# リモートリポジトリ（GitHub）のコミットの履歴から、過去のコミットのハッシュ値以降のコミットを削除
+git push -f origin <過去のコミットのハッシュ値>:<対象ブランチ名>
+
+# ローカルリポジトリを、過去のコミットした時の状態に戻す．
+git reset --hard <過去のコミットのハッシュ値>
+# https://qiita.com/shuntaro_tamura/items/db1aef9cf9d78db50ffe
 ```
 
-https://qiita.com/shuntaro_tamura/items/db1aef9cf9d78db50ffe
 <br>
 
 ```bash
 git reflog
+# https://www.r-staffing.co.jp/engineer/entry/20191227_1
 ```
-https://www.r-staffing.co.jp/engineer/entry/20191227_1
 <br>
 
 ```bash

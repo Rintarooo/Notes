@@ -132,6 +132,32 @@ git pull origin master --allow-unrelated-histories
 ```
 <br><br>
 
+### 一時的にファイルを別の場所に保管する（例えば，ブランチをマージする前）
+```bash
+git stash
+# 一時的にカレントディレクトリ以下のファイルを別の場所に保管する（スタッシュ）
+
+git stash -u
+# uオプションは，$ git statusで"untracked files"として表示されるファイル(前回のコミットで無かった新規で作成されたファイル)を含むすべてのファイルをスタッシュ
+
+git stash list
+# スタッシュされたファイルの一覧を表示
+# stash@{0}，stash@{1}．．．は「スタッシュ名」
+# 新しいスタッシュがstash@{0}
+# WIP は Work In Progress の略で「作業中」の意味
+# https://git.keicode.com/how-to-use-git/git-stash.php
+
+
+# ~~~
+# マージする
+# ~~~
+
+
+git stash pop
+# スタッシュされたファイルをワーキングツリーに戻す
+```
+<br><br>
+
 ### branch
 ```bash
 # ローカルブランチ名表示; デフォルトのローカルブランチ名:master

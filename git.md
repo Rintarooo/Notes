@@ -115,6 +115,8 @@ git log -2 -p
 
 # ブランチのコミット表示
 git log <ブランチ名>
+# git fetch && git log origin/master && git merge origin/master
+
 # ファイルのコミット表示
 git log <ファイル名>
 # https://atmarkit.itmedia.co.jp/ait/articles/2004/10/news024.html
@@ -240,9 +242,6 @@ git checkout .
 #  ワーキングツリーとインデックス（ステージ）を，HEADが指すコミットの状態に戻す
 git checkout HEAD .
 
-# リモートリポジトリ（GitHub）のコミットの履歴から、過去のコミットのハッシュ値以降のコミットを削除
-git push -f origin <過去のコミットのハッシュ値>:<対象ブランチ名>
-
 # ローカルリポジトリを、過去のコミットした時の状態に戻す．
 git reset --hard <過去のコミットのハッシュ値>
 # --hardオプションは，ワーキングツリー・インデックス（ステージ）・ローカルリポジトリの全てを戻す
@@ -263,9 +262,12 @@ git reset --hard HEAD@{1}
 <br><br>
 
 
-
+### 要注意
 ```bash
 # 強制プッシュ
 リモートリポジトリのコミットを削除するので，削除されたコミットは，復元不可．要注意
 git push -f origin masters
+
+# リモートリポジトリ（GitHub）のコミットの履歴から、過去のコミットのハッシュ値以降のコミットを削除
+git push -f origin <過去のコミットのハッシュ値>:<対象ブランチ名>
 ```

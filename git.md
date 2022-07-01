@@ -1,5 +1,7 @@
-[command]+[alt]+[o]
-preview md
+- #### OmniMarkupPreviewer
+	- OmniMarkupPreviewer is the package of SublimeText for preview markdown in a browser
+		- preview markdown in a browser
+			- [command]+[alt]+[o] 
 
 # Git command
 sourcetree is GUI version
@@ -73,8 +75,11 @@ git remote rm origin
 
 <br><br>
 
-
-
+### GitHub上のリポジトリをローカルに落とす
+```bash
+git clone <URL copied from GitHub> 
+```
+<br><br>
 
 
 ### 表示
@@ -97,6 +102,7 @@ HEAD＾，HEAD〜はHEADから一つ前のコミットという意味<br>
 HEAD=最新のコミットのハッシュ値の別名（エイリアス）
 <br>
 
+### 過去のコミットを確認
 ```bash
 #  — 過去のコミットのハッシュ値を確認
 git log | head
@@ -107,15 +113,22 @@ git log -2
 # 過去の2件のコミットの修正内容・差分表示
 git log -2 -p
 
-# <過去のコミットのハッシュ値>の修正内容・差分表示
+# ブランチのコミット表示
+git log <ブランチ名>
+# ファイルのコミット表示
+git log <ファイル名>
+# https://atmarkit.itmedia.co.jp/ait/articles/2004/10/news024.html
+
+# <過去のコミットのハッシュ値>のコミットの修正内容・差分表示
 git show <過去のコミットのハッシュ値>
 
-# GitHub上のリポジトリをローカルに落とす
-git clone <URL copied from GitHub> 
+# ツリー状に過去のコミットを表示
+git log --graph --oneline --decorate=full
+# https://qiita.com/masarufuruya/items/7480854d4bc2f0443fc1
 ```
 <br><br>
 
-### リモートの差分をローカルに取り込む．
+### リモートの差分をローカルに取り込む
 ```bash
 git pull origin master
 # リモートリポジトリ(origin)の差分をfetchして，ローカルのmasterブランチにmergeする．

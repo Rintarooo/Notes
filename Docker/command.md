@@ -47,12 +47,13 @@ docker rmi [イメージID]
 
 
 ```bash
-# コンテナを削除
+# コンテナを削除（停止しているコンテナのみ削除できる，つまり立ち上げているコンテナは停止させる必要がある）
 docker rm [コンテナID]
 
-# コンテナの[コンテナID]確認
+# 立ち上げているコンテナの[コンテナID]確認
 docker ps
 # ps = process status
+
 docker ps -alq
 # -a = all（立ち上げている，停止している，全てのコンテナ）
 # -l = latest
@@ -60,6 +61,13 @@ docker ps -alq
 
 # 立ち上げているコンテナを停止
 docker stop [コンテナID]
+
+# https://qiita.com/shisama/items/48e2eaf1dc356568b0d7
+# 立ち上げている全てのコンテナ停止
+docker stop $(docker ps -q)
+
+# 全コンテナ削除
+docker rm $(docker ps -q -a)
 ```
 <br>
 

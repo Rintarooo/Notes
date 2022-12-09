@@ -82,35 +82,63 @@ git clone <URL copied from GitHub>
 <br><br>
 
 
-### 表示
+### 差分表示
 ```bash
 # print working tree status
 git status
 
-# ワークツリーとインデックスの差分
-git diff 
+# ワークツリーとインデックスの差分（変更したファイル名のステータスを表示）
+git diff --name-status
+# A, add
+# M, modify
+# D, delete
+
+# ワークツリーとインデックスの差分（ある特定のファイルの）
+git diff <ファイル名>
+
+# ワークツリーとインデックスの差分（全てのファイルの）
+git diff
 
 # インデックスとHEAD（現在ブランチの最新コミット）との差分
-git diff —-cached
+git diff --cached
 
 # ワークツリーとHEAD（現在ブランチの最新コミット）との差分
 git diff HEAD
 
+# 指定したコミット間(コミットA：変更前 → コミットB：変更後)の差分
+git diff <コミットA> <コミットB> <ファイル名>
+# https://tmytokai.github.io/open-ed/activity/git/text02/page06.html
 ```
-HEAD＾，HEAD〜はHEADから一つ前のコミットという意味<br>
-ブランチ=履歴の先頭コミット<br>
-HEAD=最新のコミットのハッシュ値の別名（エイリアス）
-<br>
+
+ブランチは，履歴の先頭コミット<br>
+HEADは，最新のコミットのハッシュ値の別名（エイリアス）<br>
+@は，HEADの別名（エイリアス）<br>
+HEAD^，HEAD〜，HEAD~1は，HEAD(最新のコミット)から一つ前のコミットという意味<br>
+HEAD^^^，HEAD〜3は，HEADから三つ前のコミットという意味<br>
+参考：https://prograshi.com/general/git/meaning-of-head-and-at-mark/
 
 ### 過去のコミットを確認
 ```bash
-#  — 過去のコミットのハッシュ値を確認
+# 過去のコミットのハッシュ値を表示
 git log | head
 
-# 過去の2件のコミットのハッシュ値を確認
+# 過去の2件のコミットのハッシュ値を表示
 git log -2
+# HEAD -> master
+# 現在masterブランチにいて、最新のコミット(HEAD)はこのコミットであることを示しています
 
-# 過去の2件のコミットの修正内容・差分表示
+# 過去の2件のコミットのハッシュ値を1行ずつ表示
+git log -2 --oneline
+
+# 過去の2件のコミットの変更したファイル名を表示
+git log -2 --name-status
+# A, add
+# M, modify
+# D, delete
+# https://it-ojisan.tokyo/git-log-file-list/
+
+
+# 過去の2件のコミットの修正内容・差分を詳細に表示
 git log -2 -p
 
 # ブランチのコミット表示
@@ -121,12 +149,20 @@ git log <ブランチ名>
 git log <ファイル名>
 # https://atmarkit.itmedia.co.jp/ait/articles/2004/10/news024.html
 
-# <過去のコミットのハッシュ値>のコミットの修正内容・差分表示
-git show <過去のコミットのハッシュ値>
-
 # ツリー状に過去のコミットを表示
 git log --graph --oneline --decorate=full
 # https://qiita.com/masarufuruya/items/7480854d4bc2f0443fc1
+
+# <過去のコミットのハッシュ値>のコミットの修正内容・差分表示
+git show <過去のコミットのハッシュ値>
+
+# <過去のコミットのハッシュ値>のコミットの時の，<ファイル名>のファイル内容を表示
+git show <過去のコミットのハッシュ値>:<ファイル名>
+
+# 最新のコミットの修正内容・差分表示
+git show
+# = git show HEAD
+
 ```
 <br><br>
 
@@ -242,9 +278,10 @@ git checkout .
 #  ワーキングツリーとインデックス（ステージ）を，HEADが指すコミットの状態に戻す
 git checkout HEAD .
 
-# ローカルリポジトリを、過去のコミットした時の状態に戻す．
+# ローカルリポジトリのワーキングツリーを、過去のコミットした時の状態に戻す（変更する）．
 git reset --hard <過去のコミットのハッシュ値>
 # --hardオプションは，ワーキングツリー・インデックス（ステージ）・ローカルリポジトリの全てを戻す
+# ページ下の図がまとまっている：https://dev.classmethod.jp/articles/git-reset-and-git-checkout/
 # https://qiita.com/shuntaro_tamura/items/db1aef9cf9d78db50ffe
 ```
 

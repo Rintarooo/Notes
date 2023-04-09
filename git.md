@@ -50,14 +50,14 @@ git commit --amend -m [コメント]
 <br><br>
 
 ```bash
-# リモートリポジトリ上（GitHub上）のリポジトリのパス（URL）をoriginに省略する
+# GitHub上のリモートリポジトリのパス（URL）をoriginに省略する
 git remote add origin [URL copied from GitHub]
 # 例：git remote add origin　https://github.com/Rintarooo/Notes.git
 ```
 <br><br>
 
 ```bash
-# masterブランチにおけるローカルリポジトリの差分をリモートリポジトリ（GitHub）(ここでは、originに省略)に反映
+# masterブランチにおけるローカルリポジトリの差分をリモートリポジトリ（GitHub上の）(上記コマンドで、originに省略した)に反映
 git push origin master
 # git push [リモートリポジトリのURL] [差分をリモートリポジトリに反映させたい，ローカルリポジトリにおけるブランチ]
 ```
@@ -108,6 +108,7 @@ git diff HEAD
 # 指定したコミット間(コミットA：変更前 → コミットB：変更後)の差分
 git diff <コミットA> <コミットB> <ファイル名>
 # https://tmytokai.github.io/open-ed/activity/git/text02/page06.html
+# 過去のコミットの差分見たいなら、$ git show が良いよ（下に詳しく書いてる）
 ```
 
 ブランチは，履歴の先頭コミット<br>
@@ -173,13 +174,14 @@ git pull origin master
 # pull = fetch + merge
 
 git fetch origin
-# リモート追跡ブランチ(origin/master)がリモートリポジトリ(origin)の内容を取り込む(fetchする)．リモート追跡ブランチは自動的に作られる．
+# リモート追跡ブランチ(origin/master)がリモートリポジトリのoriginブランチの差分を取り込む(fetchする)．リモート追跡ブランチは自動的に作られる．
 
 git merge origin/master
-# ローカルの上流ブランチ（origin/master）をローカルのmasterブランチにmergeする．
+# ローカルの上流ブランチ（origin/master）を、現在いるブランチにmergeする．
+# ローカルのmasterブランチにマージしたい時は、masterブランチに移動する（$ git checkout master）。
 # https://qiita.com/uasi/items/69368c17c79e99aaddbf
 
-git pull origin master --allow-unrelated-histories
+# git pull origin master --allow-unrelated-histories
 ```
 <br><br>
 
@@ -221,7 +223,7 @@ git remote -v
 # ローカル+リモートブランチ名表示; 
 git branch -a
 # "-a" is -all
-# "remotes"はリモート追跡ブランチのこと
+# ブランチ先頭の"remotes/"はリモートブランチのこと
 
 # リモート追跡ブランチ名(リモート名/ブランチ名)表示; デフォルトのリモート追跡ブランチ名(リモート名/ブランチ名):origin/master
 git branch -r
@@ -250,7 +252,7 @@ git push origin [hoge]
 git checkout master
 
 # ＊masterで,現在作業しているブランチを確認
-git branch
+git branch -a
 
 # masterにhogeのコミットした差分を取り込む
 git merge [hoge]

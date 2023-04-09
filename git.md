@@ -237,6 +237,9 @@ git checkout [hoge]
 # git branch [hoge] && git checkout [hoge] 
 git checkout -b [hoge]
 
+# リモートリポジトリの[hogehoge]ブランチと同じコミット履歴を持つ[hoge]ブランチを作成して、checkoutで移動する。
+git checkout -b [hoge] リモート名/[hogehoge]
+
 # ＊hogeで,現在作業しているブランチを確認
 git branch
 

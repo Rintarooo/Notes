@@ -42,6 +42,9 @@ docker rmi [イメージID]
 # image is being used by stopped container [コンテナID] 
 # の出力が出たら，停止しているコンテナを削除する必要がある
 
+# <none>イメージを削除
+docker image prune
+
 ```
 <br>
 
@@ -53,6 +56,10 @@ docker rm [コンテナID]
 # 立ち上げているコンテナの[コンテナID]確認
 docker ps
 # ps = process status
+
+# docker ps同様のコマンド
+docker container ls 
+docker container ls -a
 
 docker ps -alq
 # -a = all（立ち上げている，停止している，全てのコンテナ）
@@ -68,6 +75,7 @@ docker stop $(docker ps -q)
 
 # 全コンテナ削除
 docker rm $(docker ps -q -a)
+docker container prune
 ```
 <br>
 

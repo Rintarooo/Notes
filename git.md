@@ -6,7 +6,6 @@
 # Git command
 sourcetree is GUI version
 
-
 ## 流れ
 
 1. __add__：working tree→index(=stage)
@@ -277,10 +276,14 @@ git push --delete origin [hoge]
 # 1. 作業ブランチを切り替える
 # 2. 指定したコミットの状態を、インデックスと作業ツリーに展開する
 # 分かりやすいURL→https://www-creators.com/archives/1290
-# ワーキングツリーを，インデックス（ステージ）の状態に戻す
+
+# ワーキングツリーのカレントディレクトリ以下の全てのファイルを，現時点でのインデックス（ステージ）の状態（git addする前の）に戻す
 git checkout .
 
-#  ワーキングツリーとインデックス（ステージ）を，HEADが指すコミットの状態に戻す
+# ワーキングツリーの特定のファイルを，インデックス（ステージ）の状態に戻す
+git checkout [hoge]
+
+#  ワーキングツリーとインデックス（ステージ）の両方を，HEADが指すコミットの状態に戻す
 git checkout HEAD .
 
 # ローカルリポジトリのワーキングツリーを、過去のコミットした時の状態に戻す（変更する）．

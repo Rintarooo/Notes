@@ -168,17 +168,23 @@ git show
 
 ### リモートの差分をローカルに取り込む
 ```bash
-git pull origin master
 # リモートリポジトリ(origin)の差分をfetchして，ローカルのmasterブランチにmergeする．
 # pull = fetch + merge
+git pull origin master
 
-git fetch origin
 # リモート追跡ブランチ(origin/master)がリモートリポジトリのoriginブランチの差分を取り込む(fetchする)．リモート追跡ブランチは自動的に作られる．
+git fetch origin
 
-git merge origin/master
 # ローカルの上流ブランチ（origin/master）を、現在いるブランチにmergeする．
 # ローカルのmasterブランチにマージしたい時は、masterブランチに移動する（$ git checkout master）。
 # https://qiita.com/uasi/items/69368c17c79e99aaddbf
+git merge origin/master
+
+# コミット履歴をマージ順ではなく、履歴の先頭に持ってきてマージする
+# https://backlog.com/ja/git-tutorial/stepup/13/
+git rebase [マージしたいブランチ名]
+# コンフリクトを修正後
+git rebase --continue
 
 # git pull origin master --allow-unrelated-histories
 ```
@@ -277,13 +283,13 @@ git push --delete origin [hoge]
 # 2. 指定したコミットの状態を、インデックスと作業ツリーに展開する
 # 分かりやすいURL→https://www-creators.com/archives/1290
 
-# ワーキングツリーのカレントディレクトリ以下の全てのファイルを，現時点でのインデックス（ステージ）の状態（git addする前の）に戻す
+# ワーキングツリーのカレントディレクトリ以下の全てのファイルを，現時点でのインデックス（ステージ）の状態（git add）に戻す
 git checkout .
 
 # ワーキングツリーの特定のファイルを，インデックス（ステージ）の状態に戻す
 git checkout [hoge]
 
-#  ワーキングツリーとインデックス（ステージ）の両方を，HEADが指すコミットの状態に戻す
+#  ワーキングツリーとインデックス（ステージ）を，HEADが指すコミットの状態に戻す
 git checkout HEAD .
 
 # ローカルリポジトリのワーキングツリーを、過去のコミットした時の状態に戻す（変更する）．

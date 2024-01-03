@@ -1,26 +1,18 @@
-- #### OmniMarkupPreviewer
-	- OmniMarkupPreviewer is the package of SublimeText for preview markdown in a browser
-		- preview markdown in a browser
-			- [command]+[alt]+[o] 
-
 # Git command
-sourcetree is GUI version
 
 ## 流れ
 
-1. __add__：working tree→index(=stage)
+| 順番 | gitのコマンド | 差分の追加 |
+|------|---------|------|
+| 1    | add     | working tree → index (= stage) |
+| 2    | commit  | index → local repository |
+| 3    | push    | local repository → remote repository (= GitHub) |
 
-2. __commit__：index→local repository
 
-3. __push__：local repository→remote repository(=GitHub)<br><br>
-
-
-## Git command
-
-### 基本操作
+## 基本操作
 
 ```bash
-# カレントディレクトリをgitでバージョン管理し始める. 
+# カレントディレクトリ以下をgitでバージョン管理し始める. 
 git init
 # カレントディレクトリに隠しディレクトリの`.git/`が生成される．
 # この.gitディレクトリが、Gitのリポジトリの実体．リポジトリとは，Gitがファイルの履歴を保存している場所のこと．ローカルの環境にあるので，ローカリリポジトリになる．
@@ -31,6 +23,7 @@ git init
 # ワーキングツリーの差分（＝変更）をインデックスに反映
 git add [ファイル名]
 # `git add [ファイル名]` は単一のファイルのみ
+
 git add -A
 # `git add .`はカレントディレクトリ以下、`git add -A` はリポジトリにおける全てのファイル
 ```
@@ -56,8 +49,8 @@ git remote add origin [URL copied from GitHub]
 <br><br>
 
 ```bash
-# masterブランチにおけるローカルリポジトリの差分をリモートリポジトリ（GitHub上の）(上記コマンドで、originに省略した)に反映
-git push origin master
+# mainブランチにおけるローカルリポジトリの差分をリモートリポジトリ（GitHub上の）(上記コマンドで、originに省略した)に反映
+git push origin main
 # git push [リモートリポジトリのURL] [差分をリモートリポジトリに反映させたい，ローカルリポジトリにおけるブランチ]
 ```
 <br><br>
@@ -124,8 +117,8 @@ git log | head
 
 # 過去の2件のコミットのハッシュ値を表示
 git log -2
-# HEAD -> master
-# 現在masterブランチにいて、最新のコミット(HEAD)はこのコミットであることを示しています
+# HEAD -> main
+# 現在mainブランチにいて、最新のコミット(HEAD)はこのコミットであることを示しています
 
 # 過去の2件のコミットのハッシュ値を1行ずつ表示
 git log -2 --oneline
@@ -143,7 +136,7 @@ git log -2 -p
 
 # ブランチのコミット表示
 git log <ブランチ名>
-# git fetch && git log origin/master && git merge origin/master
+# git fetch && git log origin/main && git merge origin/main
 
 # ファイルのコミット表示
 git log <ファイル名>
@@ -166,31 +159,61 @@ git show
 ```
 <br><br>
 
-### リモートの差分をローカルに取り込む
+## リモートの差分をローカルのブランチに取り込む
 ```bash
-# リモートリポジトリ(origin)の差分をfetchして，ローカルのmasterブランチにmergeする．
+# リモートリポジトリ（=GitHub）(リモートブランチ名:origin)の差分をfetchして，ローカルのmainブランチにmergeする．
 # pull = fetch + merge
-git pull origin master
+git pull origin main
 
-# リモート追跡ブランチ(origin/master)がリモートリポジトリのoriginブランチの差分を取り込む(fetchする)．リモート追跡ブランチは自動的に作られる．
+# リモート追跡ブランチ(origin/main)が、リモートリポジトリ(origin)の差分を取り込む(fetchする)．リモート追跡ブランチは自動的に作られる．
 git fetch origin
 
-# ローカルの上流ブランチ（origin/master）を、現在いるブランチにmergeする．
-# ローカルのmasterブランチにマージしたい時は、masterブランチに移動する（$ git checkout master）。
+# ローカルの上流ブランチ（origin/main）を、現在いるブランチにmergeする．
+# mainブランチに移動してから（$ git checkout main）、ローカルのmainブランチにマージする。
 # https://qiita.com/uasi/items/69368c17c79e99aaddbf
-git merge origin/master
+git merge origin/main
 
-# コミット履歴をマージ順ではなく、履歴の先頭に持ってきてマージする
-# https://backlog.com/ja/git-tutorial/stepup/13/
-git rebase [マージしたいブランチ名]
-# コンフリクトを修正後
-git rebase --continue
-
-# git pull origin master --allow-unrelated-histories
 ```
 <br><br>
 
-### 一時的にファイルを別の場所に保管する（例えば，ブランチをマージする前）
+## rebase
+* コミット履歴を時系列順ではなく、マージしたいコミットを、コミット履歴の先頭に持ってくる（ブランチの枝分かれし始めるコミットを変更する）
+
+```bash
+git rebase [マージしたいブランチ名]
+# https://backlog.com/ja/git-tutorial/stepup/13/
+
+### コンフリクト発生
+
+# コンフリクトを修正後
+git add -A
+git rebase --continue
+```
+<br><br>
+
+* コミット履歴をまとめる
+```bash
+git rebase -i [コミットのハッシュ値]
+# https://qiita.com/sugurutakahashi12345/items/5e63bc46a1ff3f2cce5c
+
+# コミットID_1 を指定
+git rebase -i コミットID_1
+
+# コミットメッセージを修正する場合
+# コミットID_2 に コミットID_3 と コミットID_4 をまとめる
+r コミットID_2 コミットメッセージ_2
+f コミットID_3 コミットメッセージ_3
+f コミットID_4 コミットメッセージ_4
+
+# コミットメッセージ修正しない場合は、rをpに置き換える
+# p, pick <commit> = use commit
+# r, reword <commit> = use commit, but edit the commit message
+```
+<br><br>
+
+
+## stash
+* 一時的にファイルの変更箇所を別の場所に退避する（例えば，ブランチをマージする前）
 ```bash
 git stash
 # 一時的にカレントディレクトリ以下のファイルを別の場所に保管する（スタッシュ）
@@ -205,20 +228,17 @@ git stash list
 # WIP は Work In Progress の略で「作業中」の意味
 # https://git.keicode.com/how-to-use-git/git-stash.php
 
-
-# ~~~
-# マージする
-# ~~~
-
-
-git stash pop
 # スタッシュされたファイルをワーキングツリーに戻す
+git stash pop
+
+# stash@{0}をワーキングツリーに戻す
+git stash pop stash@{0}
 ```
 <br><br>
 
 ### branch
 ```bash
-# ローカルブランチ名表示; デフォルトのローカルブランチ名:master
+# ローカルブランチ名表示; デフォルトのローカルブランチ名:main
 git branch
 # ＊　がついてるブランチが現在作業しているブランチ
 
@@ -230,13 +250,13 @@ git branch -a
 # "-a" is -all
 # ブランチ先頭の"remotes/"はリモートブランチのこと
 
-# リモート追跡ブランチ名(リモート名/ブランチ名)表示; デフォルトのリモート追跡ブランチ名(リモート名/ブランチ名):origin/master
+# リモート追跡ブランチ名(リモート名/ブランチ名)表示; デフォルトのリモート追跡ブランチ名(リモート名/ブランチ名):origin/main
 git branch -r
 
-# masterから枝分かれしたブランチhogeを作る（masterブランチを切る）
+# mainから枝分かれしたブランチhogeを作る（mainブランチを切る）
 git branch [hoge]
 
-# 作業するブランチmaster→hogeに変える
+# 作業するブランチmain→hogeに変える
 git checkout [hoge]
 
 # git branch [hoge] && git checkout [hoge] 
@@ -245,7 +265,7 @@ git checkout -b [hoge]
 # リモートリポジトリの[hogehoge]ブランチと同じコミット履歴を持つ[hoge]ブランチを作成して、checkoutで移動する。
 git checkout -b [hoge] リモート名/[hogehoge]
 
-# ＊hogeで,現在作業しているブランチを確認
+# ＊ hogeで,現在作業しているブランチを確認
 git branch
 
 
@@ -256,19 +276,22 @@ git branch
 # リモートリポジトリ（GitHub）のhogeブランチに反映
 git push origin [hoge]
 
-# 作業するブランチhoge→masterに変える
-git checkout master
+# 作業するブランチをhoge→mainに変える
+git checkout main
 
-# ＊masterで,現在作業しているブランチを確認
+# ＊　mainで,現在作業しているブランチを確認
 git branch -a
 
-# masterにhogeのコミットした差分を取り込む
+# mainにhogeブランチのコミットを取り込む
 git merge [hoge]
 
 # ブランチhogeを消す
 git branch -d [hoge]
 # -d オプションは，一回はコミットされたブランチを削除
 # -D　オプションは，過去にコミットがないブランチを削除
+
+# 現在いるブランチ名を、[変更後のブランチ名]に変更
+git branch -m [変更後のブランチ名]
 
 # リモートリポジトリ（GitHub）のhogeブランチを削除
 git push --delete origin [hoge]
@@ -316,8 +339,9 @@ git reset --hard HEAD@{1}
 ### 要注意
 ```bash
 # 強制プッシュ
-リモートリポジトリのコミットを削除するので，削除されたコミットは，復元不可．要注意
-git push -f origin masters
+# リモートリポジトリのコミットを書き換えるので，削除されたコミットは復元不可．要注意
+# 自分がいじるブランチのみ
+git push -f origin main
 
 # リモートリポジトリ（GitHub）のコミットの履歴から、過去のコミットのハッシュ値以降のコミットを削除
 git push -f origin <過去のコミットのハッシュ値>:<対象ブランチ名>
